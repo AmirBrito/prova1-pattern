@@ -10,11 +10,11 @@ import model.ProductIF;
 public class ProductFactory implements IFactory {
 	
 
-	public ProductIF createProduct(ProductTypes type, String name, String code, Double price, String isbn, Integer chTotal) {
+	public ProductIF createProduct(ProductTypes type, String name, String code, Double price) {
 		if(type == ProductTypes.BOOK)
-			return new Book(name, code, price, isbn);
+			return new Book(name, code, price);
 		if(type == ProductTypes.DISCIPLINA)
-			return new Disciplina(name, code, price, chTotal);
+			return new Disciplina(name, code, price);
 		if(type == ProductTypes.COURSE)
 			return new Course(name, code, price);
 		return null;

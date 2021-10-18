@@ -3,14 +3,19 @@ package model;
 public class Disciplina extends Product {
 
 	private Integer chTotal;
+
+
 	private Double pctCumprido;
 
-	public Disciplina(String name, String code, Double price, Integer chTotal) {
+	public Disciplina(String name, String code, Double price) {
 		super(name, code, price);
-		this.chTotal = chTotal;
 		this.pctCumprido = 0.00;
 	}
 
+	public void setChTotal(Integer chTotal) {
+		this.chTotal = chTotal;
+	}
+	
 	public Double getPctCumprido() {
 		return pctCumprido;
 	}

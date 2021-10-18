@@ -2,11 +2,15 @@ package model;
 
 public class Book extends Product {
 
-	private static String isbn;
+	private static  String isbn;
 
-	public Book(String name, String code, Double price, String isbn) {
-		super(name, code, price);
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
+	}
+
+	public Book(String name, String code, Double price) {
+		super(name, code, price);
+		
 	}
 
 	public static String getIsbn() {
