@@ -32,7 +32,7 @@ public class Client {
 		+ "o tipo de produto a ser criado. No método de criação, permita também, que seja fornecido o código e o nome do produto em instanciação."
 		*/
 		IFactory fabricaProduto = new ProductFactory();
-
+		System.out.println("Teste");
 		ProductTypes type = ProductTypes.BOOK;
 		String name = "livro 1";
 		String code = "000123";
