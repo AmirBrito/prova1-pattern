@@ -1,4 +1,6 @@
 /application/
-/model/
-/factory/
 /builder/
+/enums/
+/factory/
+/model/
+/module-info.class
