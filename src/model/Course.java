@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Course extends Product {
 	
-	private Integer CHTotal;
-	private Double PctCumprido;
-	private	ArrayList<Book> books;
-	private ArrayList<Disciplina> classes;
+	private Integer CHTotal = 0;
+	private Double PctCumprido = 0.00;
+	private	ArrayList<Book> books = new ArrayList<>();
+	private ArrayList<Disciplina> classes = new ArrayList<>();
 	
 	public void addBook(ArrayList<Book> books) {
-		books.addAll(books);
+		this.books.addAll(books);
 	}
 	
 	public void addClass(ArrayList<Disciplina> disciplinas) {

@@ -20,6 +20,7 @@ import model.ProductIF;
 
 public class App {
 
+	@SuppressWarnings("null")
 	public static void main(String[] args) {
 		
 		/*"Forneça um esquema de criação de produtos, que permita a criação de instâncias de Livros e Disciplinas, sem   que   isto\n"
@@ -48,6 +49,12 @@ public class App {
 		Disciplina disciplina = (Disciplina) produto2;
 		disciplina.setChTotal(chTotal);
 		
+		ArrayList<Book> listaLivros = new ArrayList<>();
+		ArrayList<Disciplina> listaDisciplinas = new ArrayList<>();
+		listaLivros.add(book);
+		listaLivros.add(book);
+		listaDisciplinas.add(disciplina);
+		
 		ProductTypes type2 = ProductTypes.COURSE;
 		name = "ADS";
 		code = "00001";
@@ -55,22 +62,23 @@ public class App {
 		
 		//ProductIF produto3 = fabricaProduto.createProduct(type2, name, code, price);
 		//Course curso =  (Course) produto3;
-
+		
 	
 		
-		System.out.println(book);
-		System.out.println(disciplina);
+		//System.out.println(book);
+		//System.out.println(disciplina);
 		//System.out.println(curso);
-		order(name, code, price, chTotal, null, null, new DevCourseBuilder());
-		
+
+		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
+		System.out.println(course);
 	}
 	
-	public static void order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> books, ArrayList<Disciplina> disciplinas, CourseBuilder builder) {
+	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
 		System.out.println("Ordering a " + name);
 		CourseDirector devDirector = new CourseDirector(builder);
-		devDirector.constructCourse(name, code, price, ChTotal, books, disciplinas);
-		System.out.println(devDirector.getCourse());
-		System.out.println("--------------------");
+		devDirector.constructCourse(name, code, price, ChTotal, listaLivros, listaDisciplinas);
+		Course course = devDirector.getCourse();
+		return course;
 	}
 	
 }

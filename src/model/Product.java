@@ -2,9 +2,9 @@ package model;
 
 public abstract class Product implements ProductIF {
 
-	private String name;
-	private String code;
-	private Double price;
+	private String name = "";
+	private String code = "";
+	private Double price = 0.00;
 	
 	public Product() {
 		
