@@ -10,19 +10,12 @@ public class Course extends Product {
 	private	ArrayList<Book> books;
 	private ArrayList<Disciplina> classes;
 	
-	public Course(String name, String code, Double price) {
-		super(name, code, price);
-		this.PctCumprido = 0.00;
-		this.CHTotal = 0;
+	public void addBook(ArrayList<Book> books) {
+		books.addAll(books);
 	}
 	
-	public void addBook(Book book) {
-		this.books.add(book);
-	}
-	
-	public void addClass(Disciplina disciplina) {
-		this.classes.add(disciplina);
-		setCHTotal(disciplina.getChTotal());
+	public void addClass(ArrayList<Disciplina> disciplinas) {
+		classes.addAll(disciplinas);
 	}
 	
 	public List<Book> getBooks() {
@@ -37,8 +30,8 @@ public class Course extends Product {
 		return CHTotal;
 	}
 
-	private void setCHTotal(Integer cHTotal) {
-		CHTotal += cHTotal;
+	public void setCHTotal(Integer chTotal) {
+		CHTotal = chTotal;
 	}
 
 	public Double getPctCumprido() {

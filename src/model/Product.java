@@ -5,10 +5,26 @@ public abstract class Product implements ProductIF {
 	private String name;
 	private String code;
 	private Double price;
-
+	
+	public Product() {
+		
+	}
+	
 	public Product(String name, String code, Double price) {
 		this.name = name;
 		this.code = code;
+		this.price = price;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
