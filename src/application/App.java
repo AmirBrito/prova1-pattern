@@ -2,19 +2,16 @@ package application;
 
 import java.util.ArrayList;
 
-import builder.Builder;
 import builder.CourseBuilder;
 import builder.CourseDirector;
-import builder.CursoAbstractBuilder;
 import builder.DevCourseBuilder;
-import builder.EmentaBuilder;
-import director.CursoDirector;
 import enums.ProductTypes;
 import factory.FactoryIF;
 import factory.ProductFactory;
 import model.Book;
 import model.Course;
 import model.Disciplina;
+import model.Ementa;
 import model.ProductIF;
 
 
@@ -86,6 +83,11 @@ public class App {
 
 		Course Ementa = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
 		System.out.println(Ementa);
+
+		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
+		System.out.println(course);
+		
+		Ementa ementa = new Ementa(course);
+		System.out.println(ementa);		
 	}
-	
 }

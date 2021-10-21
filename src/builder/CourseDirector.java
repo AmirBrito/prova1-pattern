@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import model.Book;
 import model.Course;
 import model.Disciplina;
+import model.Ementa;
 
 public class CourseDirector {
 	
 	private CourseBuilder builder;
 	
 	public CourseDirector(CourseBuilder builder) {
+		
 		this.builder = builder;
 	}
 	
@@ -26,4 +28,6 @@ public class CourseDirector {
 	public Course getCourse() {
 		return builder.getCourse();
 	}
+	
+
 }

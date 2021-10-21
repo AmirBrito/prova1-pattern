@@ -10,6 +10,7 @@ public class Course extends Product {
 	private	ArrayList<Book> books = new ArrayList<>();
 	private ArrayList<Disciplina> classes = new ArrayList<>();
 	
+	
 	public void addBook(ArrayList<Book> books) {
 		this.books.addAll(books);
 	}
