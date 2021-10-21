@@ -73,7 +73,7 @@ public class App {
 		price = 2000.00;
 
 		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
-		//System.out.println(course);
+		System.out.println(course);
 		
 		Ementa ementa = new Ementa(course);
 		System.out.println(ementa);		
