@@ -26,8 +26,10 @@ public class DevCourseBuilder extends CourseBuilder{
 	}
 
 	@Override
-	public void buildChTotal(Integer ChTotal) {
-		course.setCHTotal(ChTotal);
+	public void buildChTotal(ArrayList<Disciplina> disciplinas) {
+		for(Disciplina disciplina : disciplinas) {
+			course.setCHTotal(disciplina.getChTotal());
+		}
 		
 	}
 

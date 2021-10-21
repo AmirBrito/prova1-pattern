@@ -22,7 +22,7 @@ public abstract class CourseBuilder {
 	public abstract void buildName(String name);
 	public abstract void buildCode(String code);
 	public abstract void buildPrice(Double price);
-	public abstract void buildChTotal(Integer ChTotal);
+	public abstract void buildChTotal(ArrayList<Disciplina> disciplinas);
 	public abstract void buildBooks(ArrayList<Book> books);
 	public abstract void buildClasses(ArrayList<Disciplina> disciplinas);
 	

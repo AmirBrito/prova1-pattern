@@ -2,10 +2,10 @@ package model;
 
 public class Book extends Product {
 
-	private static  String isbn;
+	private static String isbn;
 
 	public void setIsbn(String isbn) {
-		this.isbn = isbn;
+		Book.isbn = isbn;
 	}
 
 	public Book(String name, String code, Double price) {

@@ -3,8 +3,6 @@ package model;
 public class Disciplina extends Product {
 
 	private Integer chTotal;
-
-
 	private Double pctCumprido;
 
 	public Disciplina(String name, String code, Double price) {
@@ -12,10 +10,6 @@ public class Disciplina extends Product {
 		this.pctCumprido = 0.00;
 	}
 
-	public void setChTotal(Integer chTotal) {
-		this.chTotal = chTotal;
-	}
-	
 	public Double getPctCumprido() {
 		return pctCumprido;
 	}
@@ -26,6 +20,10 @@ public class Disciplina extends Product {
 
 	public Integer getChTotal() {
 		return chTotal;
+	}
+	
+	public void setChTotal(Integer chTotal) {
+		this.chTotal = chTotal;
 	}
 
 	@Override

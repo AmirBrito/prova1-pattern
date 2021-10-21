@@ -31,7 +31,7 @@ public class Course extends Product {
 	}
 
 	public void setCHTotal(Integer chTotal) {
-		CHTotal = chTotal;
+		CHTotal += chTotal;
 	}
 
 	public Double getPctCumprido() {
@@ -39,7 +39,7 @@ public class Course extends Product {
 	}
 
 	public void setPctCumprido(Double pctCumprido) {
-		PctCumprido = pctCumprido;
+		PctCumprido += pctCumprido;
 	}
 
 	@Override

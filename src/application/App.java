@@ -28,6 +28,17 @@ public class App {
 		+ "concretos,   de   forma   a   não   ser impactada   pelo   oferecimento   de novos tipos de Produtos. Use um enum para definir\n"
 		+ "o tipo de produto a ser criado. No método de criação, permita também, que seja fornecido o código e o nome do produto em instanciação."
 		*/
+		test();
+	}
+	
+	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
+		System.out.println("Ordering a " + name);
+		CourseDirector devDirector = new CourseDirector(builder);
+		devDirector.constructCourse(name, code, price, ChTotal, listaLivros, listaDisciplinas);
+		return devDirector.getCourse();
+	}
+	
+	public static void test() {
 		FactoryIF fabricaProduto = new ProductFactory();
 		ProductTypes type = ProductTypes.BOOK;
 		String name = "livro 1";
@@ -46,14 +57,18 @@ public class App {
 		Integer chTotal = 90;
 		
 		ProductIF produto2 = fabricaProduto.createProduct(type1, name, code, price);
+		ProductIF produto3 = fabricaProduto.createProduct(type1, name, code, price);
 		Disciplina disciplina = (Disciplina) produto2;
+		Disciplina disciplina1 = (Disciplina) produto3;
 		disciplina.setChTotal(chTotal);
+		disciplina1.setChTotal(chTotal);
 		
 		ArrayList<Book> listaLivros = new ArrayList<>();
 		ArrayList<Disciplina> listaDisciplinas = new ArrayList<>();
 		listaLivros.add(book);
 		listaLivros.add(book);
 		listaDisciplinas.add(disciplina);
+		listaDisciplinas.add(disciplina1);
 		
 		ProductTypes type2 = ProductTypes.COURSE;
 		name = "ADS";
@@ -69,16 +84,8 @@ public class App {
 		//System.out.println(disciplina);
 		//System.out.println(curso);
 
-		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
-		System.out.println(course);
-	}
-	
-	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
-		System.out.println("Ordering a " + name);
-		CourseDirector devDirector = new CourseDirector(builder);
-		devDirector.constructCourse(name, code, price, ChTotal, listaLivros, listaDisciplinas);
-		Course course = devDirector.getCourse();
-		return course;
+		Course Ementa = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
+		System.out.println(Ementa);
 	}
 	
 }

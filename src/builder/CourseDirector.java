@@ -18,7 +18,7 @@ public class CourseDirector {
 		builder.buildName(name);
 		builder.buildCode(code);
 		builder.buildPrice(price);
-		builder.buildChTotal(ChTotal);
+		builder.buildChTotal(disciplinas);
 		builder.buildBooks(books);
 		builder.buildClasses(disciplinas);
 	}
