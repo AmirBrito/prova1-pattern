@@ -19,7 +19,7 @@ public class Ementa {
 	
 	public String toString() {
 		return "Ementa: " + course.getName()+"\n"+
-				"C�digo do Curso: " + course.hashCode() +"\n"+
+				"C�digo do Curso: " + course.getCode() +"\n"+
 				"Livros: " + course.getBooks()+"\n"+
 				"Disciplinas: " + course.getClasses(); 
 	}
