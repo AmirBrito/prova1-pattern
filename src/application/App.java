@@ -15,6 +15,7 @@ import factory.ProductFactory;
 import model.Book;
 import model.Course;
 import model.Disciplina;
+import model.Ementa;
 import model.ProductIF;
 
 
@@ -71,6 +72,10 @@ public class App {
 
 		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
 		System.out.println(course);
+		
+		Ementa ementa = new Ementa(course);
+		System.out.println(ementa);
+		
 	}
 	
 	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
@@ -80,5 +85,9 @@ public class App {
 		Course course = devDirector.getCourse();
 		return course;
 	}
+	
+	
+	
+	
 	
 }
