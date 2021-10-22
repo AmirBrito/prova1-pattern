@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course extends Product {
+public class Course extends Product{
 	
 	private Integer CHTotal = 0;
 	private Double PctCumprido = 0.00;
@@ -50,6 +50,7 @@ public class Course extends Product {
 	}
 	
 	
+
 	
 	
 }
