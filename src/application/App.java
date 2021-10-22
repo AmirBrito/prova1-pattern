@@ -71,18 +71,6 @@ public class App {
 		name = "ADS";
 		code = "00001";
 		price = 2000.00;
-		
-		//ProductIF produto3 = fabricaProduto.createProduct(type2, name, code, price);
-		//Course curso =  (Course) produto3;
-		
-	
-		
-		//System.out.println(book);
-		//System.out.println(disciplina);
-		//System.out.println(curso);
-
-		Course Ementa = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
-		System.out.println(Ementa);
 
 		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
 		System.out.println(course);
