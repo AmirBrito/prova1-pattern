@@ -3,6 +3,9 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import builder.CourseDirector;
+import builder.DevCourseBuilder;
+
 public class Course extends Product implements Cloneable{
 	
 
@@ -16,6 +19,8 @@ public class Course extends Product implements Cloneable{
 	
 
 	
+
+
 	public void addBook(ArrayList<Book> books) {
 		this.books.addAll(books);
 	}
@@ -71,7 +76,7 @@ public class Course extends Product implements Cloneable{
 
 	public static class Builder {
 		
-		
+	
 	
 
 		private String name;
@@ -95,14 +100,21 @@ public class Course extends Product implements Cloneable{
 			return this;
 		}	
 		
-		/*public Builder withChTotal(Integer CHTotal) {
-			this.CHTotal = CHTotal;
-			return this;
-		}*/
+	
 		
 		public Course now() throws CloneNotSupportedException {
 			
-			return new Course();
+		/*	CourseDirector devDirector = new CourseDirector(builder);
+			devDirector.constructCourse(name, code, price, ChTotal, listaLivros, listaDisciplinas);
+			new DevCourseBuilder()*/
+			Course course = new Course();
+			course.setName(name);
+			course.setCHTotal(CHTotal);
+			course.setPctCumprido(PctCumprido);
+			course.books = books;
+			course.classes = classes;
+			
+			return course;
 		}
 		
 		@Override
