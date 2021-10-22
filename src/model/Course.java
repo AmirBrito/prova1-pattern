@@ -3,13 +3,18 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course extends Product{
+public class Course extends Product implements Cloneable{
 	
+
+
+
+
 	private Integer CHTotal = 0;
 	private Double PctCumprido = 0.00;
 	private	ArrayList<Book> books = new ArrayList<>();
 	private ArrayList<Disciplina> classes = new ArrayList<>();
 	
+
 	
 	public void addBook(ArrayList<Book> books) {
 		this.books.addAll(books);
@@ -50,7 +55,68 @@ public class Course extends Product{
 	}
 	
 	
+	@Override
+	public Course clone() throws CloneNotSupportedException {
+		
+		Course CloneCourse = (Course) super.clone();
+		return CloneCourse;
+		
+	}
+	
+	public Builder cloneBuilder() {
+		
+		return new Builder(name, CHTotal, PctCumprido, books, classes);
+	}
+	
+
+	public static class Builder {
+		
+		
+	
+
+		private String name;
+		private Integer CHTotal;
+		private Double PctCumprido;
+		private ArrayList<Book> books;
+		private ArrayList<Disciplina> classes;
+
+		private Builder(String name,Integer CHTotal, Double PctCumprido, ArrayList<Book> books, ArrayList<Disciplina> classes ) {
+			
+			this.name =name;
+			this.CHTotal = CHTotal;
+			this.PctCumprido = PctCumprido;
+			this.books = books;
+			this.classes = classes;
+		}
+		
+		
+		public Builder withClasses(ArrayList<Disciplina> disciplinas) {
+			this.classes = disciplinas;
+			return this;
+		}	
+		
+		/*public Builder withChTotal(Integer CHTotal) {
+			this.CHTotal = CHTotal;
+			return this;
+		}*/
+		
+		public Course now() {
+			
+			return new Course();
+		}
+		
+		@Override
+		public String toString() {
+			return "Builder [name=" + name + ", CHTotal=" + CHTotal + ", PctCumprido=" + PctCumprido + ", books="
+					+ books + ", classes=" + classes + "]";
+		}
+		
+		
+	}
+
 
 	
-	
 }
+
+
+

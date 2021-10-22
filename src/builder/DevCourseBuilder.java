@@ -3,7 +3,9 @@ package builder;
 import java.util.ArrayList;
 
 import model.Book;
+import model.Course;
 import model.Disciplina;
+import model.Course.Builder;
 
 public class DevCourseBuilder extends CourseBuilder{
 
@@ -44,4 +46,7 @@ public class DevCourseBuilder extends CourseBuilder{
 		course.addClass(disciplinas);
 		
 	}
+	
+	
+
 }

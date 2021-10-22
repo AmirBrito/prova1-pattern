@@ -13,12 +13,13 @@ import model.Course;
 import model.Disciplina;
 import model.Ementa;
 import model.ProductIF;
+import singleton.CoursePool;
 
 
 public class App {
 
 	@SuppressWarnings("null")
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CloneNotSupportedException  {
 		
 		/*"Forneça um esquema de criação de produtos, que permita a criação de instâncias de Livros e Disciplinas, sem   que   isto\n"
 		+ "gere   impacto   na aplicação. A classe cliente precisa ser isolada do processo de criação e do conhecimento sobre os tipos\n"
@@ -26,16 +27,33 @@ public class App {
 		+ "o tipo de produto a ser criado. No método de criação, permita também, que seja fornecido o código e o nome do produto em instanciação."
 		*/
 		test();
+		
+		
+		
+		
+	
 	}
+	
+	
 	
 	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
 		System.out.println("Ordering a " + name);
 		CourseDirector devDirector = new CourseDirector(builder);
 		devDirector.constructCourse(name, code, price, ChTotal, listaLivros, listaDisciplinas);
+		
+		CoursePool pool = CoursePool.getInstance();
+		pool.setCourseCatalogo("Ads", devDirector.getCourse());
+		System.out.println("*************************************");
+		System.out.println(pool);
+		System.out.println("*************************************");
+		
+		
 		return devDirector.getCourse();
+		
+		
 	}
 	
-	public static void test() {
+	public static void test() throws CloneNotSupportedException {
 		FactoryIF fabricaProduto = new ProductFactory();
 		ProductTypes type = ProductTypes.BOOK;
 		String name = "livro 1";
@@ -75,7 +93,25 @@ public class App {
 		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
 		System.out.println(course);
 		
+		
 		Ementa ementa = new Ementa(course);
-		System.out.println(ementa);		
+		System.out.println(ementa);	
+		
+		ProductTypes type3 = ProductTypes.DISCIPLINA;
+		name = "Bando de Dados";
+		code = "000155";
+		price = 600.00;
+		Integer chTotal1 = 90;
+		
+		ProductIF produto4 = fabricaProduto.createProduct(type3, name, code, price);
+		Disciplina disciplina4 = (Disciplina) produto4;
+		listaDisciplinas.add(disciplina4);
+		
+		
+		CoursePool pool = CoursePool.getInstance();
+		pool.cloner("Ads").withClasses(listaDisciplinas).now();
+		System.out.println("*************************************");
+		System.out.println(pool.cloner("Ads").now());
+		System.out.println("*************************************");
 	}
 }
