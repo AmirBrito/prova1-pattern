@@ -1,12 +1,6 @@
 package singleton;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import builder.CourseBuilder;
-import builder.CourseDirector;
-import builder.DevCourseBuilder;
 import model.Course;
 import model.Course.Builder;
 
@@ -44,8 +38,7 @@ public class CoursePool {
 	}
 	
 	public Builder cloner(String curso) throws CloneNotSupportedException {
-		
-		Course course;
+
 		
 		return catalogo.get(curso).cloneBuilder();
 		

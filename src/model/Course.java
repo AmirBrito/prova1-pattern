@@ -100,7 +100,7 @@ public class Course extends Product implements Cloneable{
 			return this;
 		}*/
 		
-		public Course now() {
+		public Course now() throws CloneNotSupportedException {
 			
 			return new Course();
 		}

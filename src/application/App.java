@@ -10,6 +10,7 @@ import factory.FactoryIF;
 import factory.ProductFactory;
 import model.Book;
 import model.Course;
+import model.Course.Builder;
 import model.Disciplina;
 import model.Ementa;
 import model.ProductIF;
@@ -109,9 +110,11 @@ public class App {
 		
 		
 		CoursePool pool = CoursePool.getInstance();
-		pool.cloner("Ads").withClasses(listaDisciplinas).now();
+		Builder clone1 = pool.cloner("Ads");
+		Course clone2 = pool.cloner("Ads").withClasses(listaDisciplinas).now();
 		System.out.println("*************************************");
-		System.out.println(pool.cloner("Ads").now());
+		System.out.println(clone1);
+		System.out.println(clone2);
 		System.out.println("*************************************");
 	}
 }
