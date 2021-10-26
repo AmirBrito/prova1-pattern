@@ -37,13 +37,13 @@ public class DevCourseBuilder extends CourseBuilder{
 
 	@Override
 	public void buildBooks(ArrayList<Book> books) {
-		course.addBook(books);
+		course.addBooks(books);
 		
 	}
 
 	@Override
 	public void buildClasses(ArrayList<Disciplina> disciplinas) {
-		course.addClass(disciplinas);
+		course.addClasses(disciplinas);
 		
 	}
 	

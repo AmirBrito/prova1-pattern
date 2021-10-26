@@ -7,25 +7,25 @@ import builder.CourseDirector;
 import builder.DevCourseBuilder;
 
 public class Course extends Product implements Cloneable{
-	
-
-
-
 
 	private Integer CHTotal = 0;
 	private Double PctCumprido = 0.00;
 	private	ArrayList<Book> books = new ArrayList<>();
-	private ArrayList<Disciplina> classes = new ArrayList<>();
+	private ArrayList<Disciplina> classes = new ArrayList<>();	
 	
-
+	public void addBook(Book book) {
+		this.books.add(book);
+	}
 	
-
-
-	public void addBook(ArrayList<Book> books) {
+	public void addClass(Disciplina disciplina) {
+		classes.add(disciplina);
+	}
+	
+	public void addBooks(ArrayList<Book> books) {
 		this.books.addAll(books);
 	}
 	
-	public void addClass(ArrayList<Disciplina> disciplinas) {
+	public void addClasses(ArrayList<Disciplina> disciplinas) {
 		classes.addAll(disciplinas);
 	}
 	
@@ -71,13 +71,9 @@ public class Course extends Product implements Cloneable{
 	public Builder cloneBuilder() {
 		
 		return new Builder(name, CHTotal, PctCumprido, books, classes);
-	}
-	
+	}	
 
-	public static class Builder {
-		
-	
-	
+	public static class Builder {	
 
 		private String name;
 		private Integer CHTotal;
@@ -85,13 +81,13 @@ public class Course extends Product implements Cloneable{
 		private ArrayList<Book> books;
 		private ArrayList<Disciplina> classes;
 
-		private Builder(String name,Integer CHTotal, Double PctCumprido, ArrayList<Book> books, ArrayList<Disciplina> classes ) {
+		private Builder(String name,Integer CHTotal, Double PctCumprido, List<Book> books2, List<Disciplina> classes2 ) {
 			
 			this.name =name;
 			this.CHTotal = CHTotal;
 			this.PctCumprido = PctCumprido;
-			this.books = books;
-			this.classes = classes;
+			this.books = (ArrayList<Book>) books2;
+			this.classes = (ArrayList<Disciplina>) classes2;
 		}
 		
 		
@@ -119,15 +115,10 @@ public class Course extends Product implements Cloneable{
 		
 		@Override
 		public String toString() {
-			return "Builder [name=" + name + ", CHTotal=" + CHTotal + ", PctCumprido=" + PctCumprido + ", books="
-					+ books + ", classes=" + classes + "]";
-		}
-		
-		
-	}
-
-
-	
+			return "Builder [name=" + name + " CHTotal=" + CHTotal + " PctCumprido=" + PctCumprido + "\n books="
+					+ books + "\n classes=" + classes + "]";
+		}			
+	}	
 }
 
 

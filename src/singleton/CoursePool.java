@@ -23,7 +23,6 @@ public class CoursePool {
 		System.out.println("Creating Course POOL");
 		this.catalogo = new HashMap<String, Course>();
 		
-		
 	}
 
 
@@ -38,7 +37,6 @@ public class CoursePool {
 	}
 	
 	public Builder cloner(String curso) throws CloneNotSupportedException {
-
 		
 		return catalogo.get(curso).cloneBuilder();
 		

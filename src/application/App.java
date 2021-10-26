@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import builder.CourseBuilder;
 import builder.CourseDirector;
@@ -13,6 +14,7 @@ import model.Course;
 import model.Course.Builder;
 import model.Disciplina;
 import model.Ementa;
+import model.Product;
 import model.ProductIF;
 import singleton.CoursePool;
 
@@ -27,15 +29,10 @@ public class App {
 		+ "concretos,   de   forma   a   não   ser impactada   pelo   oferecimento   de novos tipos de Produtos. Use um enum para definir\n"
 		+ "o tipo de produto a ser criado. No método de criação, permita também, que seja fornecido o código e o nome do produto em instanciação."
 		*/
-		test();
-		
-		
-		
-		
+		//test();
+		test2();	
 	
 	}
-	
-	
 	
 	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
 		System.out.println("Ordering a " + name);
@@ -46,11 +43,9 @@ public class App {
 		pool.setCourseCatalogo("Ads", devDirector.getCourse());
 		System.out.println("*************************************");
 		System.out.println(pool);
-		System.out.println("*************************************");
+		System.out.println("*************************************");		
 		
-		
-		return devDirector.getCourse();
-		
+		return devDirector.getCourse();	
 		
 	}
 	
@@ -92,6 +87,7 @@ public class App {
 		price = 2000.00;
 
 		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
+		course.getClasses().get(0).setPctCumprido(100.00);
 		System.out.println(course);
 		
 		
@@ -99,13 +95,14 @@ public class App {
 		System.out.println(ementa);	
 		
 		ProductTypes type3 = ProductTypes.DISCIPLINA;
-		name = "Bando de Dados";
+		name = "Banco de Dados";
 		code = "000155";
 		price = 600.00;
 		Integer chTotal1 = 90;
 		
 		ProductIF produto4 = fabricaProduto.createProduct(type3, name, code, price);
 		Disciplina disciplina4 = (Disciplina) produto4;
+		disciplina4.setChTotal(chTotal1);
 		listaDisciplinas.add(disciplina4);
 		
 		
@@ -116,5 +113,57 @@ public class App {
 		System.out.println(clone1);
 		System.out.println(clone2);
 		System.out.println("*************************************");
+	}
+	
+	public static void test2() {
+		
+		Integer opcao = 999;
+		@SuppressWarnings("resource")
+		Scanner leitor = new Scanner(System.in);
+		ProductFactory fabricaProduto = new ProductFactory();
+		
+		while (opcao != 0) {
+			menu();
+			System.out.println("Informe uma opcão: ");
+			opcao = leitor.nextInt();
+			
+			switch (opcao) {
+			case 0:
+				System.out.println("quit");
+				break;
+			case 1:
+				ProductTypes type = ProductTypes.BOOK;
+				String name = "livro 1";
+				String code = "000123";
+				Double price = 100.00;
+				String isbn = "0125478539";				
+				ProductIF produto1 = fabricaProduto.createProduct(type, name, code, price);
+				Book book = (Book) produto1;
+				book.setIsbn(isbn);
+				System.out.println(book);
+				break;
+			case 2:
+				ProductTypes type1 = ProductTypes.DISCIPLINA;
+				String name1 = "padroes de projeto";
+				String code1 = "000144";
+				Double price1 = 500.00;
+				Integer chTotal1 = 90;
+				ProductIF produto2 = fabricaProduto.createProduct(type1, name1, code1, price1);
+				Disciplina disciplina = (Disciplina) produto2;
+				disciplina.setChTotal(chTotal1);
+				disciplina.setPctCumprido(50.00);
+				System.out.println(disciplina);
+				break;
+			}
+		}
+	}
+	
+	public static void menu() {
+		System.out.println(" -------------------------------------");
+		System.out.println("| 0 - Sair                            |");
+		System.out.println("| 1 - Criar e testar livro            |");
+		System.out.println("| 2 - Criar e testar disciplina       |");
+		System.out.println("| 3 - Criar testar e clonar um curso  |");
+		System.out.println(" -------------------------------------");
 	}
 }
