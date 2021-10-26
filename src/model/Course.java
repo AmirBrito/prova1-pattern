@@ -5,6 +5,7 @@ import java.util.List;
 
 import builder.CourseDirector;
 import builder.DevCourseBuilder;
+import enums.ProductTypes;
 
 public class Course extends Product implements Cloneable{
 
@@ -55,8 +56,14 @@ public class Course extends Product implements Cloneable{
 
 	@Override
 	public String toString() {
-		return "Course [CHTotal=" + getCHTotal() + ", PctCumprido=" + getPctCumprido() + ", books=" + getBooks() + ", classes="
-				+ getClasses() + "]";
+		
+		return "Course: "+ this.getName() + "\n"+
+				"Code: " +this.getCode() +"\n"+
+				"CHTotal: " + this.getCHTotal()+"\n"+
+				"PCtCumprido: " + this.PctCumprido+"\n"+
+				"Books: " + this.getBooks()+"\n"+
+				"Classes: "+ this.getClasses()+"\n";
+
 	}
 	
 	
@@ -92,7 +99,14 @@ public class Course extends Product implements Cloneable{
 		
 		
 		public Builder withClasses(ArrayList<Disciplina> disciplinas) {
+			this.classes.removeAll(this.classes);
 			this.classes = disciplinas;
+			return this;
+		}	
+		
+		public Builder withClass(Disciplina disciplina2) {
+			this.classes.removeAll(this.classes);
+			this.classes.add(disciplina2);
 			return this;
 		}	
 		
@@ -113,11 +127,11 @@ public class Course extends Product implements Cloneable{
 			return course;
 		}
 		
-		@Override
+		/*@Override
 		public String toString() {
 			return "Builder [name=" + name + " CHTotal=" + CHTotal + " PctCumprido=" + PctCumprido + "\n books="
 					+ books + "\n classes=" + classes + "]";
-		}			
+		}	*/		
 	}	
 }
 

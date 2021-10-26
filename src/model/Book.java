@@ -19,7 +19,6 @@ public class Book extends Product {
 
 	@Override
 	public String toString() {
-		return "Book [name=" + getName() + ", code=" + getCode() + ", price=" + getPrice() + ", isbn=" + getIsbn()
-				+ "]\n";
+		return "Book [name=" + getName() + ", code=" + getCode() + ", price=" + getPrice() + ", isbn=" + getIsbn()+"]"+"\n";
 	}
 }

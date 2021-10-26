@@ -1,2 +1,5 @@
-/model/
 /application/
+/builder/
+/enums/
+/factory/
+/model/

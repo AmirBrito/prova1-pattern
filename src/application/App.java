@@ -96,6 +96,7 @@ public class App {
 				Double precoCurso = (Double) 2000.00;
 				Integer cargaHorariaCurso = 300;
 				
+				
 				Course course = order(nomeCurso, codigoCurso, precoCurso, cargaHorariaCurso, listaLivros, listaDisciplinas, new DevCourseBuilder());
 				course.getClasses().get(0).setPctCumprido(100.00);
 				System.out.println(course);					
@@ -103,15 +104,30 @@ public class App {
 				System.out.println(ementa);				
 
 				break;
-			case 4:				
+			case 4:	
+				
+				ProductTypes type2 =  ProductTypes.DISCIPLINA;
+				String name2 = "PWEB";
+				String code2 = "000144";
+				Double price2 = 500.00;
+				ProductIF produto3 = fabricaProduto.createProduct(type2, name2, code2, price2);
+				Disciplina disciplina2 = (Disciplina) produto3;
+				
+				ProductTypes type3 = ProductTypes.DISCIPLINA;
+				String name3 = "INGLES";
+				String code3 = "000144";
+				Double price3 = 500.00;
+				ProductIF produto4 = fabricaProduto.createProduct(type3, name3, code3, price3);
+				Disciplina disciplina3 = (Disciplina) produto4;
+				
 				CoursePool pool = CoursePool.getInstance();
-				Builder clone1 = pool.cloner("Ads");
-				Course clone2 = pool.cloner("Ads").withClasses(listaDisciplinas).now();
+				Course clone1 = pool.cloner("Ads").withClass(disciplina2).now();
+				//Course clone2 = pool.cloner("Ads").withClasses(listaDisciplinas).now();
 				System.out.println("*************************************");
 				System.out.println(clone1);
-				System.out.println(clone2);
+				//System.out.println(clone2);
 				System.out.println("*************************************");
-				pool.setCourseCatalogo("curso 2", clone2);
+				pool.setCourseCatalogo("curso 2", clone1);
 				break;
 			case 5:
 				listaLivros.removeAll(listaLivros);
