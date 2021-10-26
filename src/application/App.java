@@ -23,15 +23,8 @@ public class App {
 
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws CloneNotSupportedException  {
-		
-		/*"Forneça um esquema de criação de produtos, que permita a criação de instâncias de Livros e Disciplinas, sem   que   isto\n"
-		+ "gere   impacto   na aplicação. A classe cliente precisa ser isolada do processo de criação e do conhecimento sobre os tipos\n"
-		+ "concretos,   de   forma   a   não   ser impactada   pelo   oferecimento   de novos tipos de Produtos. Use um enum para definir\n"
-		+ "o tipo de produto a ser criado. No método de criação, permita também, que seja fornecido o código e o nome do produto em instanciação."
-		*/
-		//test();
-		test2();	
-	
+
+		test();		
 	}
 	
 	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
@@ -50,87 +43,26 @@ public class App {
 	}
 	
 	public static void test() throws CloneNotSupportedException {
-		FactoryIF fabricaProduto = new ProductFactory();
-		ProductTypes type = ProductTypes.BOOK;
-		String name = "livro 1";
-		String code = "000123";
-		Double price = 100.00;
-		String isbn = "0125478539";
 		
-		ProductIF produto1 = fabricaProduto.createProduct(type, name, code, price);
-		Book book = (Book) produto1;
-		book.setIsbn(isbn);	
-		
-		ProductTypes type1 = ProductTypes.DISCIPLINA;
-		name = "padroes de projeto";
-		code = "000144";
-		price = 500.00;
-		Integer chTotal = 90;
-		
-		ProductIF produto2 = fabricaProduto.createProduct(type1, name, code, price);
-		ProductIF produto3 = fabricaProduto.createProduct(type1, name, code, price);
-		Disciplina disciplina = (Disciplina) produto2;
-		Disciplina disciplina1 = (Disciplina) produto3;
-		disciplina.setChTotal(chTotal);
-		disciplina1.setChTotal(chTotal);
-		
-		ArrayList<Book> listaLivros = new ArrayList<>();
-		ArrayList<Disciplina> listaDisciplinas = new ArrayList<>();
-		listaLivros.add(book);
-		listaLivros.add(book);
-		listaDisciplinas.add(disciplina);
-		listaDisciplinas.add(disciplina1);
-		
-		ProductTypes type2 = ProductTypes.COURSE;
-		name = "ADS";
-		code = "00001";
-		price = 2000.00;
-
-		Course course = order(name, code, price, chTotal, listaLivros, listaDisciplinas, new DevCourseBuilder());
-		course.getClasses().get(0).setPctCumprido(100.00);
-		System.out.println(course);
-		
-		
-		Ementa ementa = new Ementa(course);
-		System.out.println(ementa);	
-		
-		ProductTypes type3 = ProductTypes.DISCIPLINA;
-		name = "Banco de Dados";
-		code = "000155";
-		price = 600.00;
-		Integer chTotal1 = 90;
-		
-		ProductIF produto4 = fabricaProduto.createProduct(type3, name, code, price);
-		Disciplina disciplina4 = (Disciplina) produto4;
-		disciplina4.setChTotal(chTotal1);
-		listaDisciplinas.add(disciplina4);
-		
-		
-		CoursePool pool = CoursePool.getInstance();
-		Builder clone1 = pool.cloner("Ads");
-		Course clone2 = pool.cloner("Ads").withClasses(listaDisciplinas).now();
-		System.out.println("*************************************");
-		System.out.println(clone1);
-		System.out.println(clone2);
-		System.out.println("*************************************");
-	}
-	
-	public static void test2() {
-		
-		Integer opcao = 999;
+		Boolean sair = false;
+		Integer opcao = 0;
 		@SuppressWarnings("resource")
 		Scanner leitor = new Scanner(System.in);
 		ProductFactory fabricaProduto = new ProductFactory();
+		ArrayList<Book> listaLivros = new ArrayList<Book>();
+		ArrayList<Disciplina> listaDisciplinas = new ArrayList<Disciplina>();
 		
-		while (opcao != 0) {
+		while (sair != true) {
 			menu();
 			System.out.println("Informe uma opcão: ");
 			opcao = leitor.nextInt();
 			
 			switch (opcao) {
 			case 0:
+				sair = true;
 				System.out.println("quit");
 				break;
+				
 			case 1:
 				ProductTypes type = ProductTypes.BOOK;
 				String name = "livro 1";
@@ -140,8 +72,10 @@ public class App {
 				ProductIF produto1 = fabricaProduto.createProduct(type, name, code, price);
 				Book book = (Book) produto1;
 				book.setIsbn(isbn);
-				System.out.println(book);
+				listaLivros.add(book);
+				System.out.println(listaLivros);
 				break;
+				
 			case 2:
 				ProductTypes type1 = ProductTypes.DISCIPLINA;
 				String name1 = "padroes de projeto";
@@ -152,8 +86,38 @@ public class App {
 				Disciplina disciplina = (Disciplina) produto2;
 				disciplina.setChTotal(chTotal1);
 				disciplina.setPctCumprido(50.00);
-				System.out.println(disciplina);
+				listaDisciplinas.add(disciplina);				
+				System.out.println(listaDisciplinas);
 				break;
+				
+			case 3:
+				String nomeCurso = "ADS";
+				String codigoCurso = "00001";
+				Double precoCurso = (Double) 2000.00;
+				Integer cargaHorariaCurso = 300;
+				
+				Course course = order(nomeCurso, codigoCurso, precoCurso, cargaHorariaCurso, listaLivros, listaDisciplinas, new DevCourseBuilder());
+				course.getClasses().get(0).setPctCumprido(100.00);
+				System.out.println(course);					
+				Ementa ementa = new Ementa(course);
+				System.out.println(ementa);				
+
+				break;
+			case 4:				
+				CoursePool pool = CoursePool.getInstance();
+				Builder clone1 = pool.cloner("Ads");
+				Course clone2 = pool.cloner("Ads").withClasses(listaDisciplinas).now();
+				System.out.println("*************************************");
+				System.out.println(clone1);
+				System.out.println(clone2);
+				System.out.println("*************************************");
+				pool.setCourseCatalogo("curso 2", clone2);
+				break;
+			case 5:
+				listaLivros.removeAll(listaLivros);
+				listaDisciplinas.removeAll(listaDisciplinas);
+				break;
+			case 6:
 			}
 		}
 	}
@@ -161,9 +125,11 @@ public class App {
 	public static void menu() {
 		System.out.println(" -------------------------------------");
 		System.out.println("| 0 - Sair                            |");
-		System.out.println("| 1 - Criar e testar livro            |");
-		System.out.println("| 2 - Criar e testar disciplina       |");
-		System.out.println("| 3 - Criar testar e clonar um curso  |");
+		System.out.println("| 1 - Criar livro                     |");
+		System.out.println("| 2 - Criar disciplina                |");
+		System.out.println("| 3 - Criar curso                     |");
+		System.out.println("| 4 - Clonar um curso                 |");
+		System.out.println("| 5 - Limpar listas                   |");
 		System.out.println(" -------------------------------------");
 	}
 }
