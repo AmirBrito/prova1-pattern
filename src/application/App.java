@@ -54,7 +54,7 @@ public class App {
 		
 		while (sair != true) {
 			menu();
-			System.out.println("Informe uma opcão: ");
+			System.out.println("Informe uma opcao: ");
 			opcao = leitor.nextInt();
 			
 			switch (opcao) {
@@ -104,6 +104,7 @@ public class App {
 				System.out.println(ementa);				
 
 				break;
+				
 			case 4:	
 				
 				ProductTypes type2 =  ProductTypes.DISCIPLINA;
