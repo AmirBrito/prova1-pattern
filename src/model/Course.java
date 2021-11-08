@@ -3,10 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import builder.CourseDirector;
-import builder.DevCourseBuilder;
-import enums.ProductTypes;
-
 public class Course extends Product implements Cloneable {
 
 	private Integer CHTotal = 0;

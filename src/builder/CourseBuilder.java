@@ -1,12 +1,10 @@
 package builder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import model.Book;
 import model.Course;
 import model.Disciplina;
-import model.Ementa;
 
 public abstract class CourseBuilder {
 	

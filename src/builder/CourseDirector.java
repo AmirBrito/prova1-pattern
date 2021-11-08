@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import model.Book;
 import model.Course;
 import model.Disciplina;
-import model.Ementa;
 
 public class CourseDirector {
 	

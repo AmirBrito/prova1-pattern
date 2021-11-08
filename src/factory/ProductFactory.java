@@ -4,13 +4,10 @@ import enums.ProductTypes;
 import interfaces.FactoryIF;
 import interfaces.ProductIF;
 import model.Book;
-import model.Course;
 import model.Disciplina;
-import model.Product;
 
 public class ProductFactory implements FactoryIF {
 	
-
 	public ProductIF createProduct(ProductTypes type, String name, String code, Double price) {
 		if(type == ProductTypes.BOOK)
 			return new Book(name, code, price);

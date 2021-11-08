@@ -8,14 +8,11 @@ import builder.CourseDirector;
 import builder.DevCourseBuilder;
 import enums.ProductTypes;
 import factory.ProductFactory;
-import interfaces.FactoryIF;
 import interfaces.ProductIF;
 import model.Book;
 import model.Course;
-import model.Course.Builder;
 import model.Disciplina;
 import model.Ementa;
-import model.Product;
 import singleton.CoursePool;
 
 
@@ -113,11 +110,10 @@ public class App {
 				Disciplina disciplina3 = (Disciplina) produto4;
 				
 				CoursePool pool = CoursePool.getInstance();
-				Course clone1 = pool.cloner("Ads").withClass(disciplina2).now();
-				//Course clone2 = pool.cloner("Ads").withClasses(listaDisciplinas).now();
+				Course clone1 = pool.cloner("Ads").withClass(disciplina3).now();
+				clone1.addClass(disciplina2);
 				System.out.println("*************************************");
 				System.out.println(clone1);
-				//System.out.println(clone2);
 				System.out.println("*************************************");
 				pool.setCourseCatalogo("curso 2", clone1);
 				break;
