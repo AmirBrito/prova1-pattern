@@ -7,15 +7,15 @@ import builder.CourseBuilder;
 import builder.CourseDirector;
 import builder.DevCourseBuilder;
 import enums.ProductTypes;
-import factory.FactoryIF;
 import factory.ProductFactory;
+import interfaces.FactoryIF;
+import interfaces.ProductIF;
 import model.Book;
 import model.Course;
 import model.Course.Builder;
 import model.Disciplina;
 import model.Ementa;
 import model.Product;
-import model.ProductIF;
 import singleton.CoursePool;
 
 

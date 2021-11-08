@@ -1,11 +1,12 @@
 package factory;
 
 import enums.ProductTypes;
+import interfaces.FactoryIF;
+import interfaces.ProductIF;
 import model.Book;
 import model.Course;
 import model.Disciplina;
 import model.Product;
-import model.ProductIF;
 
 public class ProductFactory implements FactoryIF {
 	

@@ -1,5 +1,7 @@
 package model;
 
+import interfaces.ProductIF;
+
 public abstract class Product implements ProductIF {
 
 	protected String name = "";

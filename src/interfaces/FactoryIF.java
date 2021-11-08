@@ -1,8 +1,7 @@
-package factory;
+package interfaces;
 
 import enums.ProductTypes;
 import model.Product;
-import model.ProductIF;
 
 public interface FactoryIF {
 	
