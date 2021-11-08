@@ -10,8 +10,7 @@ import model.Ementa;
 
 public abstract class CourseBuilder {
 	
-	protected Course course;
-	
+	protected Course course;	
 	
 	public CourseBuilder() {
 		
@@ -22,8 +21,6 @@ public abstract class CourseBuilder {
 	public Course getCourse() {
 		return course;
 	}
-	
-
 	
 	public abstract void buildName(String name);
 	public abstract void buildCode(String code);

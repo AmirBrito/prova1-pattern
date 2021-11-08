@@ -8,15 +8,11 @@ public class CoursePool {
 	
 	private static final CoursePool singleton = new CoursePool();
 
-	//private List<Course> catalogo;
 	HashMap<String, Course> catalogo = new HashMap<>();
-	
 
-	
 	public static CoursePool getInstance() {
 		return singleton;
 	}
-
 
 	private CoursePool() {
 		super();
@@ -24,7 +20,6 @@ public class CoursePool {
 		this.catalogo = new HashMap<String, Course>();
 		
 	}
-
 
 	public void setCourseCatalogo(String name, Course course) {
 		this.catalogo.put(name, course);
@@ -42,12 +37,9 @@ public class CoursePool {
 		
 	}
 
-
 	@Override
 	public String toString() {
 		return "CoursePool [catalogo=" + catalogo + "]";
-	}
-	
-	
+	}	
 	
 }

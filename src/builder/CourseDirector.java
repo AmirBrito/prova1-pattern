@@ -28,6 +28,4 @@ public class CourseDirector {
 	public Course getCourse() {
 		return builder.getCourse();
 	}
-	
-
 }

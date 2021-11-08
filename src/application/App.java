@@ -37,9 +37,7 @@ public class App {
 		System.out.println("*************************************");
 		System.out.println(pool);
 		System.out.println("*************************************");		
-		
-		return devDirector.getCourse();	
-		
+		return devDirector.getCourse();		
 	}
 	
 	public static void test() throws CloneNotSupportedException {
@@ -61,8 +59,7 @@ public class App {
 			case 0:
 				sair = true;
 				System.out.println("quit");
-				break;
-				
+				break;				
 			case 1:
 				ProductTypes type = ProductTypes.BOOK;
 				String name = "livro 1";
@@ -74,8 +71,7 @@ public class App {
 				book.setIsbn(isbn);
 				listaLivros.add(book);
 				System.out.println(listaLivros);
-				break;
-				
+				break;				
 			case 2:
 				ProductTypes type1 = ProductTypes.DISCIPLINA;
 				String name1 = "padroes de projeto";
@@ -88,25 +84,20 @@ public class App {
 				disciplina.setPctCumprido(50.00);
 				listaDisciplinas.add(disciplina);				
 				System.out.println(listaDisciplinas);
-				break;
-				
+				break;				
 			case 3:
 				String nomeCurso = "ADS";
 				String codigoCurso = "00001";
 				Double precoCurso = (Double) 2000.00;
-				Integer cargaHorariaCurso = 300;
-				
+				Integer cargaHorariaCurso = 300;				
 				
 				Course course = order(nomeCurso, codigoCurso, precoCurso, cargaHorariaCurso, listaLivros, listaDisciplinas, new DevCourseBuilder());
 				course.getClasses().get(0).setPctCumprido(100.00);
 				System.out.println(course);					
 				Ementa ementa = new Ementa(course);
-				System.out.println(ementa);				
-
-				break;
-				
-			case 4:	
-				
+				System.out.println(ementa);	
+				break;				
+			case 4:				
 				ProductTypes type2 =  ProductTypes.DISCIPLINA;
 				String name2 = "PWEB";
 				String code2 = "000144";
@@ -134,7 +125,8 @@ public class App {
 				listaLivros.removeAll(listaLivros);
 				listaDisciplinas.removeAll(listaDisciplinas);
 				break;
-			case 6:
+			default:
+				System.out.println("Informe uma opcao valida.");
 			}
 		}
 	}
