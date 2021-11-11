@@ -1,6 +1,7 @@
 package singleton;
 
 import java.util.HashMap;
+
 import model.Course;
 import model.Course.Builder;
 
@@ -20,7 +21,7 @@ public class CoursePool {
 		this.catalogo = new HashMap<String, Course>();
 		
 	}
-
+	
 	public void setCourseCatalogo(String name, Course course) {
 		this.catalogo.put(name, course);
 	

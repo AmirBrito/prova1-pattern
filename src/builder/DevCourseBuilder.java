@@ -1,6 +1,6 @@
 package builder;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.Book;
 import model.Disciplina;
@@ -23,19 +23,19 @@ public class DevCourseBuilder extends CourseBuilder{
 	}
 
 	@Override
-	public void buildChTotal(ArrayList<Disciplina> disciplinas) {
+	public void buildChTotal(List<Disciplina> disciplinas) {
 		for(Disciplina disciplina : disciplinas) {
 			course.setCHTotal(disciplina.getChTotal());
 		}		
 	}
 
 	@Override
-	public void buildBooks(ArrayList<Book> books) {
+	public void buildBooks(List<Book> books) {
 		course.addBooks(books);		
 	}
 
 	@Override
-	public void buildClasses(ArrayList<Disciplina> disciplinas) {
+	public void buildClasses(List<Disciplina> disciplinas) {
 		course.addClasses(disciplinas);		
 	}
 }

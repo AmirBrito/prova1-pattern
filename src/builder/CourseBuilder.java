@@ -1,6 +1,6 @@
 package builder;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.Book;
 import model.Course;
@@ -23,8 +23,8 @@ public abstract class CourseBuilder {
 	public abstract void buildName(String name);
 	public abstract void buildCode(String code);
 	public abstract void buildPrice(Double price);
-	public abstract void buildChTotal(ArrayList<Disciplina> disciplinas);
-	public abstract void buildBooks(ArrayList<Book> books);
-	public abstract void buildClasses(ArrayList<Disciplina> disciplinas);
+	public abstract void buildChTotal(List<Disciplina> disciplinas);
+	public abstract void buildBooks(List<Book> books);
+	public abstract void buildClasses(List<Disciplina> disciplinas);
 	
 }

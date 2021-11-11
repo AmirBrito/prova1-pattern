@@ -1,6 +1,6 @@
 package builder;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import model.Book;
 import model.Course;
@@ -15,7 +15,7 @@ public class CourseDirector {
 		this.builder = builder;
 	}
 	
-	public void constructCourse(String name, String code, Double price, Integer ChTotal, ArrayList<Book> books, ArrayList<Disciplina> disciplinas) {
+	public void constructCourse(String name, String code, Double price, List<Book> books, List<Disciplina> disciplinas) {
 		builder.buildName(name);
 		builder.buildCode(code);
 		builder.buildPrice(price);

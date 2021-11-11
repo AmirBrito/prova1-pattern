@@ -5,7 +5,7 @@ import interfaces.ProductIF;
 public abstract class Product implements ProductIF {
 
 	protected String name = "";
-	private String code = "";
+	protected String code = "";
 	private Double price = 0.00;
 	
 	public Product() {

@@ -1,6 +1,7 @@
 package application;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import builder.CourseBuilder;
@@ -18,22 +19,21 @@ import singleton.CoursePool;
 
 public class App {
 
-	@SuppressWarnings("null")
-	public static void main(String[] args) throws CloneNotSupportedException  {
 
+	public static void main(String[] args) throws CloneNotSupportedException  {
+		
 		test();		
 	}
 	
-	public static Course order(String name, String code, Double price, Integer ChTotal, ArrayList<Book> listaLivros, ArrayList<Disciplina> listaDisciplinas, CourseBuilder builder) {
+	public static Course order(String name, String code, Double price, List<Book> listaLivros, List<Disciplina> listaDisciplinas, CourseBuilder builder) {
 		System.out.println("Ordering a " + name);
 		CourseDirector devDirector = new CourseDirector(builder);
-		devDirector.constructCourse(name, code, price, ChTotal, listaLivros, listaDisciplinas);
+		devDirector.constructCourse(name, code, price, listaLivros, listaDisciplinas);
+		if(devDirector.getCourse() != null)
+			System.out.println("Success -> Curso criado!\n");
 		
 		CoursePool pool = CoursePool.getInstance();
-		pool.setCourseCatalogo("Ads", devDirector.getCourse());
-		System.out.println("*************************************");
-		System.out.println(pool);
-		System.out.println("*************************************");		
+		pool.setCourseCatalogo("Ads", devDirector.getCourse());		
 		return devDirector.getCourse();		
 	}
 	
@@ -44,8 +44,10 @@ public class App {
 		@SuppressWarnings("resource")
 		Scanner leitor = new Scanner(System.in);
 		ProductFactory fabricaProduto = new ProductFactory();
-		ArrayList<Book> listaLivros = new ArrayList<Book>();
-		ArrayList<Disciplina> listaDisciplinas = new ArrayList<Disciplina>();
+		List<Book> library1 = new ArrayList<Book>();
+		List<Book> library2 = new ArrayList<Book>();
+		List<Disciplina> listClasses1 = new ArrayList<Disciplina>();
+		List<Disciplina> listClasses2 = new ArrayList<Disciplina>();
 		
 		while (sair != true) {
 			menu();
@@ -59,70 +61,150 @@ public class App {
 				break;				
 			case 1:
 				ProductTypes type = ProductTypes.BOOK;
-				String name = "livro 1";
-				String code = "000123";
-				Double price = 100.00;
+				String nameBook = "livro 1";
+				String codeBook = "000123";
+				Double priceBook = 100.00;
 				String isbn = "0125478539";				
-				ProductIF produto1 = fabricaProduto.createProduct(type, name, code, price);
+				ProductIF produto1 = fabricaProduto.createProduct(type, nameBook, codeBook, priceBook);
 				Book book = (Book) produto1;
 				book.setIsbn(isbn);
-				listaLivros.add(book);
-				System.out.println(listaLivros);
+				library1.add(book);
+				
+				nameBook = "livro 2";
+				codeBook = "00124";
+				priceBook = 125.00;
+				isbn = "15115321548";
+				produto1 = fabricaProduto.createProduct(type, nameBook, codeBook, priceBook);
+				book = (Book) produto1;
+				book.setIsbn(isbn);
+				library1.add(book);
+				
+				nameBook = "livro 3";
+				codeBook = "01156";
+				priceBook = 80.00;
+				isbn = "151516515487";
+				produto1 = fabricaProduto.createProduct(type, nameBook, codeBook, priceBook);
+				book = (Book) produto1;
+				book.setIsbn(isbn);
+				library1.add(book);
+				
+				nameBook = "livro 4";
+				codeBook = "01879";
+				priceBook = 200.00;
+				isbn = "1156474871";
+				produto1 = fabricaProduto.createProduct(type, nameBook, codeBook, priceBook);
+				book = (Book) produto1;
+				book.setIsbn(isbn);
+				library2.add(book);
+				
+				nameBook = "livro 5";
+				codeBook = "02004";
+				priceBook = 150.00;
+				isbn = "1561547878";
+				produto1 = fabricaProduto.createProduct(type, nameBook, codeBook, priceBook);
+				book = (Book) produto1;
+				book.setIsbn(isbn);
+				library2.add(book);
+				
+				nameBook = "livro 6";
+				codeBook = "02254";
+				priceBook = 115.00;
+				isbn = "111479818";
+				produto1 = fabricaProduto.createProduct(type, nameBook, codeBook, priceBook);
+				book = (Book) produto1;
+				book.setIsbn(isbn);
+				library2.add(book);
+				
+				if(library1 != null && library2 != null) {
+					System.out.println("Success -> Livros criados!\n");
+				}
 				break;				
 			case 2:
 				ProductTypes type1 = ProductTypes.DISCIPLINA;
-				String name1 = "padroes de projeto";
-				String code1 = "000144";
-				Double price1 = 500.00;
-				Integer chTotal1 = 90;
-				ProductIF produto2 = fabricaProduto.createProduct(type1, name1, code1, price1);
+				String nameClass = "Padroes de projeto";
+				String codeClass = "000144";
+				Double priceClass = 500.00;
+				Integer chTotalClass = 90;
+				ProductIF produto2 = fabricaProduto.createProduct(type1, nameClass, codeClass, priceClass);
 				Disciplina disciplina = (Disciplina) produto2;
-				disciplina.setChTotal(chTotal1);
-				disciplina.setPctCumprido(50.00);
-				listaDisciplinas.add(disciplina);				
-				System.out.println(listaDisciplinas);
+				disciplina.setChTotal(chTotalClass);
+				listClasses1.add(disciplina);
+				
+				nameClass = "Programacao Web";
+				codeClass = "000150";
+				priceClass = 300.00;
+				chTotalClass = 60;
+				produto2 = fabricaProduto.createProduct(type1, nameClass, codeClass, priceClass);
+				disciplina = (Disciplina) produto2;
+				disciplina.setChTotal(chTotalClass);
+				listClasses1.add(disciplina);
+				
+				nameClass = "Metodologia de pesquisa";
+				codeClass = "000199";
+				priceClass = 350.00;
+				chTotalClass = 75;
+				produto2 = fabricaProduto.createProduct(type1, nameClass, codeClass, priceClass);
+				disciplina = (Disciplina) produto2;
+				disciplina.setChTotal(chTotalClass);
+				listClasses2.add(disciplina);
+				
+				nameClass = "Programacao Orientada a Objetos";
+				codeClass = "000225";
+				priceClass = 450.00;
+				chTotalClass = 75;
+				produto2 = fabricaProduto.createProduct(type1, nameClass, codeClass, priceClass);
+				disciplina = (Disciplina) produto2;
+				disciplina.setChTotal(chTotalClass);
+				listClasses2.add(disciplina);
+				
+				if(listClasses1 != null && listClasses2 != null) {
+					System.out.println("Success -> Disciplinas criadas!\n");
+				}				
 				break;				
 			case 3:
-				String nomeCurso = "ADS";
-				String codigoCurso = "00001";
-				Double precoCurso = (Double) 2000.00;
-				Integer cargaHorariaCurso = 300;				
+				String nameCourse = "ADS";
+				String codeCourse = "00001";
+				Double priceCourse = (Double) 2000.00;				
 				
-				Course course = order(nomeCurso, codigoCurso, precoCurso, cargaHorariaCurso, listaLivros, listaDisciplinas, new DevCourseBuilder());
-				course.getClasses().get(0).setPctCumprido(100.00);
-				System.out.println(course);					
+				Course course = order(nameCourse, codeCourse, priceCourse, library1, listClasses1, new DevCourseBuilder());
+				System.out.println(course);
+				System.out.println("------------------");
+				System.out.println("Ementa do Curso: ");
 				Ementa ementa = new Ementa(course);
 				System.out.println(ementa);	
 				break;				
-			case 4:				
-				ProductTypes type2 =  ProductTypes.DISCIPLINA;
-				String name2 = "PWEB";
-				String code2 = "000144";
-				Double price2 = 500.00;
-				ProductIF produto3 = fabricaProduto.createProduct(type2, name2, code2, price2);
-				Disciplina disciplina2 = (Disciplina) produto3;
-				
-				ProductTypes type3 = ProductTypes.DISCIPLINA;
-				String name3 = "INGLES";
-				String code3 = "000144";
-				Double price3 = 500.00;
-				ProductIF produto4 = fabricaProduto.createProduct(type3, name3, code3, price3);
-				Disciplina disciplina3 = (Disciplina) produto4;
-				
+			case 4:
 				CoursePool pool = CoursePool.getInstance();
-				Course clone1 = pool.cloner("Ads").withClass(disciplina3).now();
-				clone1.addClass(disciplina2);
-				System.out.println("*************************************");
-				System.out.println(clone1);
-				System.out.println("*************************************");
+				Course clone1 = pool.cloner("Ads").withClasses(listClasses2).withBooks(library2).now();
+				
+				System.out.println("--------------------------------------\n\nCurso Clonado");
+				System.out.println(clone1);				
+				System.out.println("--------------------------------------\n\n");
+				Ementa ementa1 = new Ementa(clone1);
+				System.out.println(ementa1);	
 				pool.setCourseCatalogo("curso 2", clone1);
 				break;
 			case 5:
-				listaLivros.removeAll(listaLivros);
-				listaDisciplinas.removeAll(listaDisciplinas);
+				for(Book auxBook : library1) {
+					System.out.println(auxBook);
+				}
+				System.out.println("----------------------------\n\n\n");
+				for(Book auxBook1 : library1) {
+					System.out.println(auxBook1);
+				}
+				break;
+			case 6:
+				for(Disciplina auxClass : listClasses1) {
+					System.out.println(auxClass);
+				}
+				System.out.println("----------------------------\n\n\n");
+				for(Disciplina auxClass1 : listClasses2) {
+					System.out.println(auxClass1);
+				}
 				break;
 			default:
-				System.out.println("Informe uma opcao valida.");
+				System.out.println("Informe uma opcao valida - (0 a 6).7");
+				break;
 			}
 		}
 	}
@@ -130,11 +212,12 @@ public class App {
 	public static void menu() {
 		System.out.println(" -------------------------------------");
 		System.out.println("| 0 - Sair                            |");
-		System.out.println("| 1 - Criar livro                     |");
-		System.out.println("| 2 - Criar disciplina                |");
-		System.out.println("| 3 - Criar curso                     |");
-		System.out.println("| 4 - Clonar um curso                 |");
-		System.out.println("| 5 - Limpar listas                   |");
+		System.out.println("| 1 - Criar Livros                    |");
+		System.out.println("| 2 - Criar Disciplinas               |");
+		System.out.println("| 3 - Criar Curso                     |");
+		System.out.println("| 4 - Clonar Curso                    |");
+		System.out.println("| 5 - Listar Livros                   |");
+		System.out.println("| 6 - Listar Disciplinas              |");
 		System.out.println(" -------------------------------------");
 	}
 }
