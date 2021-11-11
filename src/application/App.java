@@ -216,6 +216,7 @@ public class App {
 				System.out.println(pool.getCourseCatalogo("curso 2"));				
 				System.out.println("--------------------------------------");
 				ementa2.setCourse(pool.getCourseCatalogo("curso 2"));
+				System.out.println(ementa2);
 				break;	
 			default:
 				System.out.println("Informe uma opcao valida - (0 a 6).7");
