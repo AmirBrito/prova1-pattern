@@ -3,7 +3,6 @@ package singleton;
 import java.util.HashMap;
 
 import model.Course;
-import model.Course.Builder;
 
 public class CoursePool {
 	
@@ -16,7 +15,6 @@ public class CoursePool {
 	}
 
 	private CoursePool() {
-		super();
 		System.out.println("Creating Course POOL");
 		this.catalogo = new HashMap<String, Course>();
 		
@@ -30,12 +28,6 @@ public class CoursePool {
 	public Course getCourseCatalogo(String course) {
 		
 		return catalogo.get(course);
-	}
-	
-	public Builder cloner(String curso) throws CloneNotSupportedException {
-		
-		return catalogo.get(curso).cloneBuilder();
-		
 	}
 
 	@Override

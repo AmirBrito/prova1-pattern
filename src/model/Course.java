@@ -3,7 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Course extends Product implements Cloneable {
+import builder.CourseDirector;
+import builder.DevCourseBuilder;
+import interfaces.CoursePrototipagemIF;
+
+public class Course extends Product implements CoursePrototipagemIF{
 
 	private Integer CHTotal = 0;
 	private Double PctCumprido = 0.00;
@@ -57,70 +61,13 @@ public class Course extends Product implements Cloneable {
 				+ "\n" + "PCtCumprido: " + this.PctCumprido + "\n" + "Books: " + this.getBooks() + "\n" + "Classes: "
 				+ this.getClasses() + "\n";
 	}
-
-	@Override
-	public Course clone() throws CloneNotSupportedException {
-
-		Course CloneCourse = (Course) super.clone();
-		return CloneCourse;
-	}
-
-	public Builder cloneBuilder() {
+	
+	public Course prototipar(String name, String code, Double price, List<Book> books, List<Disciplina> disciplinas) {
 		
-		return new Builder(name, CHTotal, PctCumprido, books, classes);
-	}
-
-	public static class Builder {
-
-		private String name = "";
-		private Integer CHTotal = 0;
-		private Double PctCumprido = 0.00;
-		private List<Book> books = new ArrayList<>();
-		private List<Disciplina> classes = new ArrayList<>();
-
-
-		private Builder(String name, Integer CHTotal, Double PctCumprido, List<Book> books2,
-						List<Disciplina> classes2) {
-			this.name = name;
-			this.CHTotal = CHTotal;
-			this.PctCumprido = PctCumprido;
-			this.books = (List<Book>) books2;
-			this.classes = (List<Disciplina>) classes2;
-		}
-				
-		public Builder withClasses(List<Disciplina> disciplinas) {
-			this.classes.removeAll(this.classes);
-			this.classes.addAll(disciplinas);
-			return this;
-		}
-
-		public Builder withClass(Disciplina disciplina2) {
-			this.classes.removeAll(this.classes);
-			this.classes.add(disciplina2);
-			return this;
-		}
-		
-		public Builder withBooks(List<Book> books) {
-			this.books.removeAll(this.books);
-			this.books.addAll(books);
-			return this;
-		}
-		
-		public Builder withBook(Book book) {
-			this.books.removeAll(this.books);
-			this.books.add(book);
-			return this;
-		}
-
-		public Course now() throws CloneNotSupportedException {
-
-			Course course = new Course();
-			course.setName(name);
-			course.setCHTotal(CHTotal);
-			course.setPctCumprido(PctCumprido);
-			course.books = books;
-			course.classes = classes;
-			return course;
-		}
+		CourseDirector director = new CourseDirector(new DevCourseBuilder());
+		Course course = new Course();
+		director.constructCourse(name, code, price, books, disciplinas);
+		course = director.getCourse();
+		return course;		
 	}
 }
