@@ -62,11 +62,11 @@ public class Course extends Product implements CoursePrototipagemIF{
 				+ this.getClasses() + "\n";
 	}
 	
-	public Course prototipar(String name, String code, Double price, List<Book> books, List<Disciplina> disciplinas) {
+	public Course prototipar(List<Book> books, List<Disciplina> disciplinas) {
 		
 		CourseDirector director = new CourseDirector(new DevCourseBuilder());
 		Course course = new Course();
-		director.constructCourse(name, code, price, books, disciplinas);
+		director.constructCourse(getName(), getCode(), getPrice(), books, disciplinas);
 		course = director.getCourse();
 		return course;		
 	}

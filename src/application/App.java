@@ -179,7 +179,7 @@ public class App {
 				break;				
 			case 4:
 				courseAux = pool.getCourseCatalogo("curso 1");
-				course2 = courseAux.prototipar("ADS - CLONE", "00002", 2000.00, library2, listClasses2);
+				course2 = courseAux.prototipar(library2, listClasses2);
 				pool.setCourseCatalogo("curso 2", course2);				
 				break;
 			case 5:
