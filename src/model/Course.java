@@ -50,8 +50,14 @@ public class Course extends Product implements CoursePrototipagemIF{
 		return PctCumprido;
 	}
 
-	public void setPctCumprido(Double pctCumprido) {
-		PctCumprido += pctCumprido;
+	public void setPctCumprido() {
+		double aux = classes.size();
+		double aux2 = 0.00;
+		for(Disciplina disciplina : classes) {
+			if(disciplina.getConcluida() == true)
+				aux2++;
+		}
+		this.PctCumprido = (aux2 / aux * 100);
 	}
 
 	@Override

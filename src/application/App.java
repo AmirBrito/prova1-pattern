@@ -140,6 +140,7 @@ public class App {
 				produto2 = fabricaProduto.createProduct(type, nameClass, codeClass, priceClass);
 				disciplina = (Disciplina) produto2;
 				disciplina.setChTotal(chTotalClass);
+				disciplina.setPctCumprido(100.00);
 				listClasses1.add(disciplina);
 				
 				nameClass = "Metodologia de pesquisa";
@@ -149,6 +150,7 @@ public class App {
 				produto2 = fabricaProduto.createProduct(type, nameClass, codeClass, priceClass);
 				disciplina = (Disciplina) produto2;
 				disciplina.setChTotal(chTotalClass);
+				disciplina.setPctCumprido(100.00);
 				listClasses2.add(disciplina);
 				
 				nameClass = "Programacao Orientada a Objetos";
@@ -158,6 +160,7 @@ public class App {
 				produto2 = fabricaProduto.createProduct(type, nameClass, codeClass, priceClass);
 				disciplina = (Disciplina) produto2;
 				disciplina.setChTotal(chTotalClass);
+				disciplina.setPctCumprido(100.00);
 				listClasses2.add(disciplina);
 				
 				if(listClasses1 == null || listClasses2 == null)
@@ -170,6 +173,7 @@ public class App {
 				String codeCourse = "00001";
 				Double priceCourse = (Double) 2000.00;				
 				course1 = order(nameCourse, codeCourse, priceCourse, library1, listClasses1, new DevCourseBuilder());
+				course1.setPctCumprido();
 				pool.setCourseCatalogo("curso 1", course1);
 				
 				if(pool.getCourseCatalogo("curso 1") == null)
@@ -180,6 +184,7 @@ public class App {
 			case 4:
 				courseAux = pool.getCourseCatalogo("curso 1");
 				course2 = courseAux.prototipar(library2, listClasses2);
+				course2.setPctCumprido();
 				pool.setCourseCatalogo("curso 2", course2);				
 				break;
 			case 5:
@@ -201,6 +206,7 @@ public class App {
 				}
 				break;
 			case 7:
+				course1 = pool.getCourseCatalogo("curso 2");
 				System.out.println(pool.getCourseCatalogo("curso 1"));
 				System.out.println("------------------");
 				ementa1.setCourse(pool.getCourseCatalogo("curso 1"));
