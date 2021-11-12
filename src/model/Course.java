@@ -3,16 +3,29 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import builder.CourseDirector;
-import builder.DevCourseBuilder;
+import builder.AntigoCourseDirector;
+import builder.AntigoDevCourseBuilder;
 import interfaces.CoursePrototipagemIF;
 
-public class Course extends Product implements CoursePrototipagemIF{
+public class Course extends Product {
 
 	private Integer CHTotal = 0;
 	private Double PctCumprido = 0.00;
 	private List<Book> books = new ArrayList<>();
 	private List<Disciplina> classes = new ArrayList<>();
+	
+	
+
+	public Course(String name, String code, Double price, Integer CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
+		super();
+		this.name = name;
+		this.code = code;
+		this.price = price;
+		CHTotal = CHTotal;
+		PctCumprido = pctCumprido;
+		this.books = books;
+		this.classes = classes;
+	}
 
 	public void addBook(Book book) {
 		this.books.add(book);
@@ -68,12 +81,9 @@ public class Course extends Product implements CoursePrototipagemIF{
 				+ this.getClasses() + "\n";
 	}
 	
-	public Course prototipar(List<Book> books, List<Disciplina> disciplinas) {
+	public Course prototipar() {
 		
-		CourseDirector director = new CourseDirector(new DevCourseBuilder());
-		Course course = new Course();
-		director.constructCourse(getName(), getCode(), getPrice(), books, disciplinas);
-		course = director.getCourse();
-		return course;		
+		Course curso = new Course(this.name, this.code, this.price, this.CHTotal, this.PctCumprido, this.books, this.classes);
+		return curso;		
 	}
 }

@@ -1,30 +1,76 @@
 package builder;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import interfaces.BuilderIF;
 import model.Book;
 import model.Course;
 import model.Disciplina;
 
-public abstract class CourseBuilder {
+public class CourseBuilder  {
 	
-	protected Course course;	
+	protected String name;
+	protected String code;
+	private Double price;
+	private Integer CHTotal;
+	private Double PctCumprido;
+	private List<Book> books = new ArrayList<>();
+	private List<Disciplina> classes = new ArrayList<>();
 	
-	public CourseBuilder() {
-		
-		course = new Course();
+	
+	public static CourseBuilder reset() {
+		return new CourseBuilder();
+	}
+
+
+	public CourseBuilder withName(String name) {
+		this.name = name;
+		return this;
+	}
+
+
+	public CourseBuilder withCode(String code) {
+		this.code = code;
+		return this;
+	}
+
+
+	public CourseBuilder withPrice(Double price) {
+		this.price = price;
+		return this;
 		
 	}
-	
-	public Course getCourse() {
-		return course;
+
+
+	public CourseBuilder withTotal(Integer cHTotal) {
+		CHTotal = cHTotal;
+		return this;
+	}
+
+
+	public CourseBuilder withCumprido(Double pctCumprido) {
+		PctCumprido = pctCumprido;
+		return this;
+	}
+
+
+	public CourseBuilder withBooks(List<Book> books) {
+		this.books = books;
+		return this;
+	}
+
+
+	public CourseBuilder withClasses(List<Disciplina> classes) {
+		this.classes = classes;
+		return this;
 	}
 	
-	public abstract void buildName(String name);
-	public abstract void buildCode(String code);
-	public abstract void buildPrice(Double price);
-	public abstract void buildChTotal(List<Disciplina> disciplinas);
-	public abstract void buildBooks(List<Book> books);
-	public abstract void buildClasses(List<Disciplina> disciplinas);
+	public Course thatsAll() {
+		return new Course(name,code,price, CHTotal, PctCumprido, books,classes );
+	}
 	
+	
+	
+
 }
