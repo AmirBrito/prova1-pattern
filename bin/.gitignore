@@ -1,10 +1,5 @@
 /module-info.class
-/.gitignore
-/application/
-/builder/
-/enums/
-/factories/
-/interfaces/
-/model/
-/singleton/
+/observer/
+/java/
 /memento/
+/model/

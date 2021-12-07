@@ -9,9 +9,7 @@ import builder.CourseBuilder;
 import model.Book;
 import model.Course;
 import model.Disciplina;
-
-
-
+import observer.StateChangedLog;
 
 
 
@@ -55,8 +53,9 @@ public class Caretaker {
 		
 		curso.restore( caretaker.get(1));
 		System.out.println(curso);
-
 		
+		curso.attachStateChangedObserver(new StateChangedLog());
+		curso.fireStateChangedEvent(null, null);
 	}
 
 	

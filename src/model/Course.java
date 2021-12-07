@@ -1,7 +1,11 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+
+import observer.StateChangedEvent;
+import observer.StateChangedObserver;
 
 
 
@@ -11,6 +15,8 @@ public class Course extends Product {
 	private Double PctCumprido = 0.00;
 	private List<Book> books = new ArrayList<>();
 	private List<Disciplina> classes = new ArrayList<>();
+	
+	private List<StateChangedObserver> observers = new LinkedList<StateChangedObserver>();
 	
 	
 
@@ -134,6 +140,22 @@ public class Course extends Product {
 			
 		}
 	}
+	
+	
+	public void attachStateChangedObserver(StateChangedObserver observer) {
+		this.observers.add(observer); 
+	}
+	
+	public void detachStateChangedObserver(StateChangedObserver observer) {
+		this.observers.remove(observer); 
+	}
+	
+	public void fireStateChangedEvent(String de, String para) {
+		for(StateChangedObserver observer : this.observers)
+			observer.notifyStateChanged(new StateChangedEvent(de, para));
+	}
+	
+	
 
 
 }
