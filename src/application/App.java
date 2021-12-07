@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import builder.AntigoCourseBuilder;
-import builder.AntigoCourseDirector;
-import builder.AntigoDevCourseBuilder;
 import builder.CourseBuilder;
 import enums.ProductTypes;
 import factories.BookFactory;
@@ -29,7 +26,7 @@ public class App {
 		String nameClass = "Padroes de projeto";
 		String codeClass = "000144";
 		Double priceClass = 500.00;
-		Integer chTotalClass = 90;
+		int chTotalClass = 90;
 		DisciplinaFactory fabricaProduto = new DisciplinaFactory();
 		ProductIF produto2 = fabricaProduto.createProduct(type, nameClass, codeClass, priceClass);
 		Disciplina disciplina = (Disciplina) produto2;
@@ -43,10 +40,7 @@ public class App {
 		
 		System.out.println(curso2);
 		
-		
-
-		
-		
+			
 		
 	}
 	

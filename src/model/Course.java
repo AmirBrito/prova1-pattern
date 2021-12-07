@@ -3,9 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import builder.AntigoCourseDirector;
-import builder.AntigoDevCourseBuilder;
-import interfaces.CoursePrototipagemIF;
+
 
 public class Course extends Product {
 
@@ -16,12 +14,12 @@ public class Course extends Product {
 	
 	
 
-	public Course(String name, String code, Double price, Integer CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
+	public Course(String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
 		super();
 		this.name = name;
 		this.code = code;
 		this.price = price;
-		CHTotal = CHTotal;
+		this.CHTotal = CHTotal;
 		PctCumprido = pctCumprido;
 		this.books = books;
 		this.classes = classes;
@@ -54,8 +52,13 @@ public class Course extends Product {
 	public Integer getCHTotal() {
 		return CHTotal;
 	}
+	
+	
+	public void setCHTotal(Integer cHTotal) {
+		CHTotal = cHTotal;
+	}
 
-	public void setCHTotal(Integer chTotal) {
+	public void addCHTotal(Integer chTotal) {
 		CHTotal += chTotal;
 	}
 
@@ -63,7 +66,7 @@ public class Course extends Product {
 		return PctCumprido;
 	}
 
-	public void setPctCumprido() {
+	public void setPctCumprido(){
 		double aux = classes.size();
 		double aux2 = 0.00;
 		for(Disciplina disciplina : classes) {
@@ -86,4 +89,51 @@ public class Course extends Product {
 		Course curso = new Course(this.name, this.code, this.price, this.CHTotal, this.PctCumprido, this.books, this.classes);
 		return curso;		
 	}
+	
+	public Snapshot getSnapshot() {
+		return new Snapshot(this, this.name, this.code, this.price, this.CHTotal, this.PctCumprido, this.books, this.classes);
+							
+	}
+	
+	public void restore(Snapshot snapshot) {
+		snapshot.restore();
+	}
+	
+	public static class Snapshot {
+		
+		private Course course;
+		
+		private String name; 
+		private String code; 
+		private Double price; 
+		private int CHTotal; 
+		private Double pctCumprido; 
+		private List<Book> books; 
+		private  List<Disciplina> classes;
+
+
+		private Snapshot (Course course, String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
+			this.course = course;
+			this.name = name;
+			this.code = code;
+			this.price = price;
+			this.CHTotal = CHTotal;
+			this.pctCumprido = pctCumprido;
+			this.books = books;
+			this.classes = classes;
+		}
+
+		private void restore() {
+			this.course.setName(name); 
+			this.course.setCode(code);
+			this.course.setPrice(price);
+			this.course.setCHTotal(CHTotal);
+			//this.course.setPctCumprido();
+			this.course.books = new ArrayList<Book>(this.books);
+			this.course.classes = new ArrayList<Disciplina>(this.classes);
+			
+		}
+	}
+
+
 }
