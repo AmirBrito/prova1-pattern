@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import State.Andamento;
+import State.CursoStateIF;
 import interfaces.ObserverIF;
 
 
@@ -17,6 +19,7 @@ public class Course extends Product {
 	private List<Disciplina> classes = new ArrayList<>();
 	
 	private List<ObserverIF> observers;
+	private CursoStateIF state;
 	
 	
 
@@ -30,6 +33,7 @@ public class Course extends Product {
 		this.books = books;
 		this.classes = classes;
 		this.observers = new LinkedList<ObserverIF>();
+		this.state = new Andamento();
 	}
 
 	public void addBook(Book book) {
@@ -178,7 +182,36 @@ public class Course extends Product {
 			observer.update(msm);//nao passa parametro
 	}
 	
+	//q3
 	
+
+	public void continuar() {
+		this.state = this.state.continuar();
+		//System.out.println("continua");
+	}
+	
+
+	public void suspender() {
+		this.state = this.state.suspender();
+		//System.out.println("suspenso");
+	}
+	
+
+	public void concluir() {
+		this.state = this.state.concluir();
+		//System.out.println("concluido");
+	}
+	
+
+	public void cancelar() {
+		this.state = this.state.cancelar();
+		//System.out.println("cancelado");
+	}
+	
+	/*public void verificaState() {
+		
+		 System.out.println(this.state);
+	}*/
 
 
 }

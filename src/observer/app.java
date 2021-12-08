@@ -62,11 +62,25 @@ public class app {
 		
 	}
 	
+	
+	public void q3() {
+		
+		Course curso = CourseBuilder.reset().withName("ADS").withCode("123").withCumprido(5.0).withPrice(5.0).withTotal(0).thatsAll();
+
+		curso.continuar();
+		curso.suspender();
+		curso.continuar();
+		curso.concluir();
+		curso.continuar();//nao vai executar 
+	}
+	
 	public static void main(String[] args) {
 
 		new app().q1();
 		
 		new app().q2();
+		
+		new app().q3();
 		
 		
 	}		
