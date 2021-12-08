@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import observer.StateChangedEvent;
-import observer.StateChangedObserver;
+import interfaces.ObserverIF;
+
 
 
 
@@ -16,7 +16,7 @@ public class Course extends Product {
 	private List<Book> books = new ArrayList<>();
 	private List<Disciplina> classes = new ArrayList<>();
 	
-	private List<StateChangedObserver> observers = new LinkedList<StateChangedObserver>();
+	private List<ObserverIF> observers;
 	
 	
 
@@ -29,6 +29,7 @@ public class Course extends Product {
 		PctCumprido = pctCumprido;
 		this.books = books;
 		this.classes = classes;
+		this.observers = new LinkedList<ObserverIF>();
 	}
 
 	public void addBook(Book book) {
@@ -96,14 +97,30 @@ public class Course extends Product {
 		return curso;		
 	}
 	
+	
+	
+	//**********************************************************Prova 2****************************************************************************//
+	
+	public void avancar (Disciplina disciplina, Double PctCumprido) {
+		
+		disciplina.addPctCumprido(PctCumprido);
+	}
+	
+	
+	
+	//q1
 	public Snapshot getSnapshot() {
+		
+		this.notifyObserver("Get SnapShot");
 		return new Snapshot(this, this.name, this.code, this.price, this.CHTotal, this.PctCumprido, this.books, this.classes);
 							
 	}
 	
 	public void restore(Snapshot snapshot) {
 		snapshot.restore();
+		this.notifyObserver("Get restore");
 	}
+	
 	
 	public static class Snapshot {
 		
@@ -116,6 +133,7 @@ public class Course extends Product {
 		private Double pctCumprido; 
 		private List<Book> books; 
 		private  List<Disciplina> classes;
+		
 
 
 		private Snapshot (Course course, String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
@@ -127,6 +145,9 @@ public class Course extends Product {
 			this.pctCumprido = pctCumprido;
 			this.books = books;
 			this.classes = classes;
+			
+			
+			
 		}
 
 		private void restore() {
@@ -142,17 +163,19 @@ public class Course extends Product {
 	}
 	
 	
-	public void attachStateChangedObserver(StateChangedObserver observer) {
+	//q2
+	
+	public void attachStateChangedObserver(ObserverIF observer) {
 		this.observers.add(observer); 
 	}
 	
-	public void detachStateChangedObserver(StateChangedObserver observer) {
+	public void detachStateChangedObserver(ObserverIF observer) {
 		this.observers.remove(observer); 
 	}
 	
-	public void fireStateChangedEvent(String de, String para) {
-		for(StateChangedObserver observer : this.observers)
-			observer.notifyStateChanged(new StateChangedEvent(de, para));
+	public void notifyObserver(String msm) {
+		for(ObserverIF observer : this.observers)
+			observer.update(msm);//nao passa parametro
 	}
 	
 	

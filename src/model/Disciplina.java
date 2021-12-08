@@ -38,6 +38,16 @@ public class Disciplina extends Product {
 	public void setChTotal(Integer chTotal) {
 		this.chTotal = chTotal;
 	}
+	
+	//*************************************
+	
+	public void addPctCumprido(Double pctCumprido) {
+		
+		this.pctCumprido = this.pctCumprido + pctCumprido;
+
+	}
+	
+
 
 	@Override
 	public String toString() {
