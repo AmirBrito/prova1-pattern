@@ -1,5 +1,8 @@
 package State;
 
+import State.Course;
+import State.Course.Snapshot;
+
 public class Suspenso extends CursoAbstractState implements CursoStateIF{
 	
 	private static final CursoStateIF instance = new Andamento();
@@ -18,9 +21,18 @@ public class Suspenso extends CursoAbstractState implements CursoStateIF{
 		return new Cancelado();
 	}
 	
-public  CursoStateIF getInstance() {
+	public  CursoStateIF getInstance() {
 		
 		return instance;
 	}
+	
+	@Override
+	public Snapshot getSnapshot() {
+		
+		 return this.getSnapshot();
+	}
+
+
+
 
 }

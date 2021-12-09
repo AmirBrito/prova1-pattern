@@ -1,4 +1,4 @@
-package model;
+package State;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -7,6 +7,10 @@ import java.util.List;
 import State.Andamento;
 import State.CursoStateIF;
 import interfaces.ObserverIF;
+import model.Book;
+import State.Course;
+import model.Disciplina;
+import model.Product;
 
 
 
@@ -20,6 +24,8 @@ public class Course extends Product {
 	
 	private List<ObserverIF> observers;
 	private CursoStateIF state;
+	private List<Course.Snapshot > snapshots = new ArrayList<Course.Snapshot>();
+	
 	
 	
 
@@ -34,6 +40,8 @@ public class Course extends Product {
 		this.classes = classes;
 		this.observers = new LinkedList<ObserverIF>();
 		this.state = new Andamento();
+		
+		
 		
 	}
 
@@ -139,9 +147,12 @@ public class Course extends Product {
 		private List<Book> books; 
 		private  List<Disciplina> classes;
 		
+		
 
 
-		private Snapshot (Course course, String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
+		
+
+		private Snapshot (Course course, String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes ) {
 			this.course = course;
 			this.name = name;
 			this.code = code;
@@ -150,6 +161,7 @@ public class Course extends Product {
 			this.pctCumprido = pctCumprido;
 			this.books = books;
 			this.classes = classes;
+
 			
 			
 			
@@ -164,8 +176,13 @@ public class Course extends Product {
 			this.course.books = new ArrayList<Book>(this.books);
 			this.course.classes = new ArrayList<Disciplina>(this.classes);
 			
+			
 		}
+		
+	
 	}
+	
+	
 	
 	
 	//q2
@@ -209,14 +226,24 @@ public class Course extends Product {
 		//System.out.println("cancelado");
 	}
 	
-
+	public void restoreState(Snapshot snapshot) {
+		this.state.restore(snapshot);
+	}
+	
+	public void getSnapshotState(){
+		
+		 this.getSnapshot();
+		
+							
+	}
+	
 	public String getRelatorio() {
 		String relatorio = "RELATÓRIO\n";
 		//Estatistica estatistica = new Estatistica(this.historico);
 		relatorio += "Nome Curso: " + this.getName() + "\n";
 		relatorio += "Code: " + this.getCode() + "\n";
 		relatorio += "Price: " + this.getPrice() + "\n";
-		relatorio += "CHTotal : " + this.getCHTotal() + "\n";
+		relatorio += "CHTotal : " + this.CHTotal+ "\n";
 		relatorio += "PctCumprido : " + this.getPctCumprido() + "\n";
 		return relatorio;
 	}

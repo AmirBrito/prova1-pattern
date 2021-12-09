@@ -2,9 +2,12 @@ package State;
 
 import java.util.List;
 
-import model.Course.Snapshot;
+import State.Course;
+import State.Course.Snapshot;
 
 public abstract class CursoAbstractState implements CursoStateIF{
+	
+	
 	
 	@Override
 	public CursoStateIF continuar() {
@@ -30,10 +33,13 @@ public abstract class CursoAbstractState implements CursoStateIF{
 	public void restore(Snapshot snapshot) {
 		return;
 	}
-
-	@Override
-	public double executar(List<Double> historico) {
-		return 0;
+	
+	//@Override
+	public Snapshot getSnapshot() {
+		return this.getSnapshot();
 	}
+
+
+	
 
 }
