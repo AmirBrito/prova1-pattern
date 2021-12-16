@@ -2,7 +2,7 @@ package model;
 
 public class Disciplina extends Product {
 
-	private Integer chTotal = 0;
+	private int chTotal = 0;
 	private Double pctCumprido = 0.00;
 	protected Boolean concluida = false;
 
@@ -41,9 +41,14 @@ public class Disciplina extends Product {
 	
 	//*************************************
 	
-	public void addPctCumprido(Double pctCumprido) {
+	public void addCHT(int cht) {
 		
-		this.pctCumprido = this.pctCumprido + pctCumprido;
+		this.chTotal = this.chTotal + cht;
+
+	}
+	public void minusCHT(int cht) {
+		
+		this.chTotal = this.chTotal - cht;
 
 	}
 	

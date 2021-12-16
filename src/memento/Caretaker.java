@@ -34,28 +34,7 @@ public class Caretaker {
 	}
 	
 	
-	public static void main(String[] args) throws InterruptedException {
-		
-		Caretaker caretaker = new Caretaker();
-		Course curso = CourseBuilder.reset().withName("ADS").withCode("123").withCumprido(5.0).withPrice(5.0).withTotal(0).thatsAll();
-		caretaker.add(curso);
-		System.out.println(curso);
-		
-		curso.addCHTotal(200);
-		caretaker.add(curso);
-		curso.addCHTotal(200);
-		caretaker.add(curso);
-	
-		
-		System.out.println(curso);
-		
-		
-		
-		curso.restore( caretaker.get(1));
-		System.out.println(curso);
-		
 
-	}
 
 	
 	

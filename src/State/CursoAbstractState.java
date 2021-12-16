@@ -4,6 +4,7 @@ import java.util.List;
 
 import State.Course;
 import State.Course.Snapshot;
+import interfaces.ObserverIF;
 
 public abstract class CursoAbstractState implements CursoStateIF{
 	
@@ -34,12 +35,20 @@ public abstract class CursoAbstractState implements CursoStateIF{
 		return;
 	}
 	
-	//@Override
-	public Snapshot getSnapshot() {
-		return this.getSnapshot();
+	@Override
+	public void  getSnapshot(Course curso) {
+		return ;
+		
+		
+	}
+	
+	@Override
+	public void imprimirCertificado(Course curso) {
+		
+		return;
 	}
 
-
+	
 	
 
 }

@@ -12,7 +12,8 @@ public interface CursoStateIF {
 	public CursoStateIF concluir();
 	public CursoStateIF cancelar();
 	public void restore(Snapshot snapshot);
-	public Snapshot getSnapshot();
+	public void  getSnapshot(Course curso);
+	public void imprimirCertificado(Course curso);
 
 
 }

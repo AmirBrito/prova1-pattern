@@ -3,10 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 import State.Andamento;
 import State.CursoStateIF;
 import interfaces.ObserverIF;
+import model.Course.Snapshot;
 
 
 
@@ -61,6 +63,10 @@ public class Course extends Product {
 		return classes;
 	}
 
+	public void addCHTotal(Integer chTotal) {
+		CHTotal += chTotal;
+	}
+	
 	public Integer getCHTotal() {
 		return CHTotal;
 	}
@@ -70,9 +76,14 @@ public class Course extends Product {
 		CHTotal = cHTotal;
 	}
 
-	public void addCHTotal(Integer chTotal) {
-		CHTotal += chTotal;
-	}
+/*	public Integer getCHTotal() {
+		
+		for(Disciplina classe: this.classes) {
+			
+			this.CHTotal += classe.getChTotal();
+		}
+		return this.CHTotal;
+	}*/
 
 	public Double getPctCumprido() {
 		return PctCumprido;
@@ -91,7 +102,7 @@ public class Course extends Product {
 	@Override
 	public String toString() {
 
-		return "Course: " + this.getName() + "\n" + "Code: " + this.getCode() + "\n" + "CHTotal: " + this.getCHTotal()
+		return "Course: " + this.getName() + "\n" + "Code: " + this.getCode() + "\n" + "CHTotal: " //+ this.getCHTotal()
 				+ "\n" + "PCtCumprido: " + this.PctCumprido + "\n" + "Books: " + this.getBooks() + "\n" + "Classes: "
 				+ this.getClasses() + "\n";
 	}
@@ -106,10 +117,13 @@ public class Course extends Product {
 	
 	//**********************************************************Prova 2****************************************************************************//
 	
-	public void avancar (Disciplina disciplina, Double PctCumprido) {
+	public void avancar (Disciplina disciplina, int cht) {
 		
-		disciplina.addPctCumprido(PctCumprido);
+		disciplina.addCHT(cht);
 	}
+	
+
+
 	
 	
 	
@@ -117,12 +131,13 @@ public class Course extends Product {
 	public Snapshot getSnapshot() {
 		
 		this.notifyObserver("Get SnapShot");
-		return new Snapshot(this, this.name, this.code, this.price, this.CHTotal, this.PctCumprido, this.books, this.classes);
+		return new Snapshot(this, this.name, this.code, this.price,  this.CHTotal, this.books, this.classes);
 							
 	}
 	
 	public void restore(Snapshot snapshot) {
 		snapshot.restore();
+		
 		this.notifyObserver("Get restore");
 	}
 	
@@ -130,24 +145,31 @@ public class Course extends Product {
 	public static class Snapshot {
 		
 		private Course course;
+		private Disciplina disciplina;
 		
 		private String name; 
+		
+		
+
 		private String code; 
 		private Double price; 
 		private int CHTotal; 
+		public void setCHTotal(int cHTotal) {
+			CHTotal = cHTotal;
+		}
+
 		private Double pctCumprido; 
 		private List<Book> books; 
 		private  List<Disciplina> classes;
 		
 
 
-		private Snapshot (Course course, String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
+		private Snapshot (Course course, String name, String code, Double price, int CHTotal, List<Book> books, List<Disciplina> classes) {
 			this.course = course;
 			this.name = name;
 			this.code = code;
 			this.price = price;
 			this.CHTotal = CHTotal;
-			this.pctCumprido = pctCumprido;
 			this.books = books;
 			this.classes = classes;
 			
@@ -160,11 +182,48 @@ public class Course extends Product {
 			this.course.setCode(code);
 			this.course.setPrice(price);
 			this.course.setCHTotal(CHTotal);
-			//this.course.setPctCumprido();
 			this.course.books = new ArrayList<Book>(this.books);
-			this.course.classes = new ArrayList<Disciplina>(this.classes);
+			this.course.classes = new ArrayList<Disciplina>(this.classes);		
+			
 			
 		}
+		
+		
+		
+		public Course getCourse() {
+			return course;
+		}
+
+		
+		public String getName() {
+			return name;
+		}
+
+		public String getCode() {
+			return code;
+		}
+
+		public Double getPrice() {
+			return price;
+		}
+
+		public int getCHTotal() {
+			return CHTotal;
+		}
+
+		public Double getPctCumprido() {
+			return pctCumprido;
+		}
+
+		public List<Book> getBooks() {
+			return books;
+		}
+
+		public List<Disciplina> getClasses() {
+			return classes;
+		}
+		
+		
 	}
 	
 	
@@ -212,7 +271,6 @@ public class Course extends Product {
 
 	public String getRelatorio() {
 		String relatorio = "RELATÓRIO\n";
-		//Estatistica estatistica = new Estatistica(this.historico);
 		relatorio += "Nome Curso: " + this.getName() + "\n";
 		relatorio += "Code: " + this.getCode() + "\n";
 		relatorio += "Price: " + this.getPrice() + "\n";

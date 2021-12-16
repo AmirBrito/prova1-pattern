@@ -114,9 +114,9 @@ public class Course extends Product {
 	
 	//**********************************************************Prova 2****************************************************************************//
 	
-	public void avancar (Disciplina disciplina, Double PctCumprido) {
+	public void avancar (Disciplina disciplina, int cht) {
 		
-		disciplina.addPctCumprido(PctCumprido);
+		disciplina.addCHT(cht);
 	}
 	
 	
@@ -171,8 +171,8 @@ public class Course extends Product {
 			this.course.setName(name); 
 			this.course.setCode(code);
 			this.course.setPrice(price);
-			this.course.setCHTotal(CHTotal);
-			//this.course.setPctCumprido();
+			//this.course.setCHTotal(CHTotal);
+			this.course.setPctCumprido();
 			this.course.books = new ArrayList<Book>(this.books);
 			this.course.classes = new ArrayList<Disciplina>(this.classes);
 			
@@ -230,11 +230,16 @@ public class Course extends Product {
 		this.state.restore(snapshot);
 	}
 	
-	public void getSnapshotState(){
+	public void getSnapshotState(Course curso){
 		
-		 this.getSnapshot();
+		  this.state.getSnapshot(curso);
 		
 							
+	}
+	
+	public void getCertificado(Course curso) {
+		
+		this.state.imprimirCertificado(curso);
 	}
 	
 	public String getRelatorio() {

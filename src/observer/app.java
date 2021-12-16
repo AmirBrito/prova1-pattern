@@ -1,5 +1,7 @@
 package observer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 import builder.CourseBuilder;
@@ -17,19 +19,22 @@ public class app {
 		Stack<Snapshot> checks = new Stack<Snapshot>();
 		Disciplina disciplina = new Disciplina("Mat", "MAT01", 1000.00);
 		Course curso = CourseBuilder.reset().withName("ADS").withCode("123").withCumprido(5.0).withPrice(5.0).withTotal(0).thatsAll();
-		System.out.println(disciplina.getPctCumprido());
+		curso.addClass(disciplina);
 		
+		checks.push(curso.getSnapshot());
 		
-		curso.avancar(disciplina, 0.25);
+		curso.avancar(disciplina, 25);
+		curso.setPrice(100.00);
 		checks.push(curso.getSnapshot());
-		System.out.println(disciplina.getPctCumprido());
-		curso.avancar(disciplina, 0.20);
+		System.out.println(disciplina.getChTotal());
+		curso.avancar(disciplina, 20);
 		checks.push(curso.getSnapshot());
-		System.out.println(disciplina.getPctCumprido()+"\n");
+		System.out.println(disciplina.getChTotal()+"\n");
+		
 
-		//ainda possui um erro no calculo carga horaria ao restaurar disciplina
-		curso.restore(checks.pop());
-		System.out.println(disciplina.getPctCumprido());
+		curso.restore(checks.get(1));
+		System.out.println(curso.getRelatorio());	
+		
 
 
 		
@@ -63,18 +68,13 @@ public class app {
 	}
 	
 	
-	public void q3() {
-		
 
-	}
 	
 	public static void main(String[] args) {
 
 		//new app().q1();
 		
-		//new app().q2();
-		
-		new app().q3();
+		new app().q2();
 		
 		
 	}		

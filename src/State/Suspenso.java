@@ -27,9 +27,9 @@ public class Suspenso extends CursoAbstractState implements CursoStateIF{
 	}
 	
 	@Override
-	public Snapshot getSnapshot() {
+	public void getSnapshot(Course curso) {
 		
-		 return this.getSnapshot();
+		 curso.getSnapshot();
 	}
 
 

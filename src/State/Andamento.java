@@ -8,9 +8,8 @@ import State.Course.Snapshot;
 
 public class Andamento extends CursoAbstractState implements CursoStateIF{
 	
-	private static final CursoStateIF instance = new Andamento();
 	
-	
+		
 	
 	@Override
 	public CursoStateIF suspender() {
@@ -24,22 +23,21 @@ public class Andamento extends CursoAbstractState implements CursoStateIF{
 		return new Concluido();
 	}
 	
-	public  CursoStateIF getInstance() {
-		
-		return instance;
-	}
+	
 	
 	
 	@Override
 	public void restore(Snapshot snapshot) {
 		
 		snapshot.restore();
-		//this.notifyObserver("Get restore");
+		
+		
 	}
 	
 	@Override
-	public Snapshot getSnapshot() {
-		return this.getSnapshot();
+	public void getSnapshot(Course curso) {
+		System.out.println("snap");
+		curso.getSnapshot() ;
 	}
 
 
