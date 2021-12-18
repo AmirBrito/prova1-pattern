@@ -14,7 +14,11 @@ public class Course extends Product implements componentCursavelIF{
 	private List<Book> books = new ArrayList<>();
 	private List<componentCursavelIF> componentes = new ArrayList<>();
 		
-
+	
+	public Course() {
+		
+	}
+	
 	public Course(String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<componentCursavelIF> componentes) {
 		super();
 		this.name = name;
@@ -80,9 +84,9 @@ public class Course extends Product implements componentCursavelIF{
 	@Override
 	public String toString() {
 
-		return "Course: " + this.getName() + "\n" + "Code: " + this.getCode() + "\n" + "CHTotal: " //+ this.getCHTotal()
+		return "Course: " + this.getName() + "\n" + "Code: " + this.getCode() + "\n" + "CHTotal: " + this.getCHTotal()
 				+ "\n" + "PCtCumprido: " + this.PctCumprido + "\n" + "Books: " + this.getBooks() + "\n" + "Classes: "
-				+ "\n";
+				+ this.getComponents() + "\n";
 	}
 	
 	public Course prototipar() {

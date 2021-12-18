@@ -22,7 +22,20 @@ public class App {
 
 	public static void main(String[] args) throws CloneNotSupportedException  {
 		
-		/*
+
+		new App().q1();	
+		
+	}
+	
+	public void q1() {
+		ProductTypes type2 = ProductTypes.BOOK;
+		String nomeLivro = "livro 1";
+		String codeLivro = "15616";
+		double priceLivro = 50.0;
+		BookFactory fabricaLivro = new BookFactory();
+		ProductIF produto = fabricaLivro.createProduct(type2, nomeLivro, codeLivro, priceLivro);
+		Book livro = (Book) produto;
+		
 		ProductTypes type = ProductTypes.DISCIPLINA;
 		String nameClass = "Padroes de projeto";
 		String codeClass = "000144";
@@ -33,20 +46,24 @@ public class App {
 		Disciplina disciplina = (Disciplina) produto2;
 		System.out.println(disciplina);
 		
-	
-		Course curso = CourseBuilder.reset().withName("ADS").withCode("123").withCumprido(10.0).withPrice(10.0).withTotal(100).thatsAll();
-		System.out.println(curso);
+		Course cursoCompose = new Course();
+		cursoCompose.setName("Padroes de Projeto");
+		cursoCompose.setCode("002");
+		cursoCompose.setCHTotal(100);
+		cursoCompose.addComponent(disciplina);
+		System.out.println(cursoCompose.getPreco());
 		
-		Course curso2 = curso.prototipar();
+		Course curso = new Course();
+		curso.setName("ADS");
+		curso.setCode("001");
+		curso.setCHTotal(300);
+		curso.addComponent(disciplina);
+		curso.addComponent(cursoCompose);
+		curso.addComponent(cursoCompose);
+		curso.addBook(livro);
+		curso.addBook(livro);
 		
-		System.out.println(curso2);
-		*/
-		new App().q1();	
-		
-	}
-	
-	public void q1() {
-		System.out.println("teste");
+		System.out.println(curso.getPreco());
 	}
 	
 	
