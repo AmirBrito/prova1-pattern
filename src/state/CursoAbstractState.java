@@ -1,10 +1,10 @@
-package State;
+package state;
 
 import java.util.List;
 
-import State.Course;
-import State.Course.Snapshot;
 import interfaces.ObserverIF;
+import state.Course;
+import state.Course.Snapshot;
 
 public abstract class CursoAbstractState implements CursoStateIF{
 	

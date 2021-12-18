@@ -1,9 +1,9 @@
-package State;
+package state;
 
 import java.util.List;
 
-import State.Course;
-import State.Course.Snapshot;
+import state.Course;
+import state.Course.Snapshot;
 
 public interface CursoStateIF {
 		

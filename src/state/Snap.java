@@ -1,6 +1,6 @@
-package State;
+package state;
 
-import State.Course.Snapshot;
+import state.Course.Snapshot;
 
 public interface Snap {
 	

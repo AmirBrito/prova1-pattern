@@ -22,6 +22,7 @@ public class App {
 
 	public static void main(String[] args) throws CloneNotSupportedException  {
 		
+		/*
 		ProductTypes type = ProductTypes.DISCIPLINA;
 		String nameClass = "Padroes de projeto";
 		String codeClass = "000144";
@@ -39,9 +40,13 @@ public class App {
 		Course curso2 = curso.prototipar();
 		
 		System.out.println(curso2);
+		*/
+		new App().q1();	
 		
-			
-		
+	}
+	
+	public void q1() {
+		System.out.println("teste");
 	}
 	
 	

@@ -21,7 +21,7 @@ public class Ementa {
 		return "Ementa: " + course.getName()+"\n"+
 				"Codigo do Curso: " + course.getCode() +"\n"+
 				"Livros: " + course.getBooks()+"\n"+
-				"Disciplinas: " + course.getClasses(); 
+				"Disciplinas: " + course.getComponents(); 
 	}
 	
 }

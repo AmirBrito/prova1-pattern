@@ -1,4 +1,4 @@
-package State;
+package state;
 
 
 
@@ -8,13 +8,13 @@ import java.util.Stack;
 
 import builder.CourseBuilder;
 import memento.Caretaker;
-import State.Course;
-import State.Course.Snapshot;
 import model.Book;
 import model.Disciplina;
 import observer.Observer;
+import state.Course;
+import state.Course.Snapshot;
 
-public class apply {
+public class Apply {
 	
 
 	
@@ -55,11 +55,11 @@ public class apply {
 		curso.continuar();
 	}
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 
 		
-		new apply().q3();
+		new Apply().q3();
 		
 		
-	}		
+	}	*/	
 }

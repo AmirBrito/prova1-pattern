@@ -1,31 +1,21 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
-import State.Andamento;
-import State.CursoStateIF;
-import interfaces.ObserverIF;
-import model.Course.Snapshot;
+import composite.componentCursavelIF;
 
 
 
-
-public class Course extends Product {
+public class Course extends Product implements componentCursavelIF{
 
 	private Integer CHTotal = 0;
 	private Double PctCumprido = 0.00;
 	private List<Book> books = new ArrayList<>();
-	private List<Disciplina> classes = new ArrayList<>();
-	
-	private List<ObserverIF> observers;
-	private CursoStateIF state;
-	
-	
+	private List<componentCursavelIF> componentes = new ArrayList<>();
+		
 
-	public Course(String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<Disciplina> classes) {
+	public Course(String name, String code, Double price, int CHTotal, Double pctCumprido, List<Book> books, List<componentCursavelIF> componentes) {
 		super();
 		this.name = name;
 		this.code = code;
@@ -33,34 +23,32 @@ public class Course extends Product {
 		this.CHTotal = CHTotal;
 		this.PctCumprido = pctCumprido;
 		this.books = books;
-		this.classes = classes;
-		this.observers = new LinkedList<ObserverIF>();
-		this.state = new Andamento();
-		
+		this.componentes = componentes;	
+	}
+	
+	public void addComponent(componentCursavelIF item) {
+		this.componentes.add(item);
+	}
+	
+	public void removeComponent(componentCursavelIF item) {
+		this.componentes.remove(item);
+	}
+	
+	public List<componentCursavelIF> getComponents(){
+		return this.componentes;
 	}
 
 	public void addBook(Book book) {
 		this.books.add(book);
 	}
 
-	public void addClass(Disciplina disciplina) {
-		classes.add(disciplina);
-	}
 
 	public void addBooks(List<Book> books) {
 		this.books.addAll(books);
 	}
 
-	public void addClasses(List<Disciplina> disciplinas) {
-		classes.addAll(disciplinas);
-	}
-
 	public List<Book> getBooks() {
 		return books;
-	}
-
-	public List<Disciplina> getClasses() {
-		return classes;
 	}
 
 	public void addCHTotal(Integer chTotal) {
@@ -76,27 +64,17 @@ public class Course extends Product {
 		CHTotal = cHTotal;
 	}
 
-/*	public Integer getCHTotal() {
+	public double getPctCumprido() {
+		double pct = 0.0;
 		
-		for(Disciplina classe: this.classes) {
-			
-			this.CHTotal += classe.getChTotal();
+		for(componentCursavelIF item : componentes) {
+				pct += item.getPctCumprido();
 		}
-		return this.CHTotal;
-	}*/
-
-	public Double getPctCumprido() {
-		return PctCumprido;
+		return pct;
 	}
 
-	public void setPctCumprido(){
-		double aux = classes.size();
-		double aux2 = 0.00;
-		for(Disciplina disciplina : classes) {
-			if(disciplina.getConcluida() == true)
-				aux2++;
-		}
-		this.PctCumprido = (aux2 / aux * 100);
+	public void setPctCumprido(double pctCumprido){
+		this.PctCumprido = pctCumprido;
 	}
 
 	@Override
@@ -104,185 +82,46 @@ public class Course extends Product {
 
 		return "Course: " + this.getName() + "\n" + "Code: " + this.getCode() + "\n" + "CHTotal: " //+ this.getCHTotal()
 				+ "\n" + "PCtCumprido: " + this.PctCumprido + "\n" + "Books: " + this.getBooks() + "\n" + "Classes: "
-				+ this.getClasses() + "\n";
+				+ "\n";
 	}
 	
 	public Course prototipar() {
 		
-		Course curso = new Course(this.name, this.code, this.price, this.CHTotal, this.PctCumprido, this.books, this.classes);
+		Course curso = new Course(this.name, this.code, this.price, this.CHTotal, this.PctCumprido, this.books, this.componentes);
 		return curso;		
 	}
-	
-	
-	
-	//**********************************************************Prova 2****************************************************************************//
-	
-	public void avancar (Disciplina disciplina, int cht) {
-		
-		disciplina.addCHT(cht);
-	}
-	
 
-
-	
-	
-	
-	//q1
-	public Snapshot getSnapshot() {
+	@Override
+	public double getPreco() {
 		
-		this.notifyObserver("Get SnapShot");
-		return new Snapshot(this, this.name, this.code, this.price,  this.CHTotal, this.books, this.classes);
-							
-	}
-	
-	public void restore(Snapshot snapshot) {
-		snapshot.restore();
+		double precoComponents = 0.0;
+		double precoLivros = 0.0;
+		double total = 0.0;
 		
-		this.notifyObserver("Get restore");
-	}
-	
-	
-	public static class Snapshot {
-		
-		private Course course;
-		private Disciplina disciplina;
-		
-		private String name; 
-		
-		
-
-		private String code; 
-		private Double price; 
-		private int CHTotal; 
-		public void setCHTotal(int cHTotal) {
-			CHTotal = cHTotal;
-		}
-
-		private Double pctCumprido; 
-		private List<Book> books; 
-		private  List<Disciplina> classes;
-		
-
-
-		private Snapshot (Course course, String name, String code, Double price, int CHTotal, List<Book> books, List<Disciplina> classes) {
-			this.course = course;
-			this.name = name;
-			this.code = code;
-			this.price = price;
-			this.CHTotal = CHTotal;
-			this.books = books;
-			this.classes = classes;
-			
-			
-			
-		}
-
-		public void restore() {
-			this.course.setName(name); 
-			this.course.setCode(code);
-			this.course.setPrice(price);
-			this.course.setCHTotal(CHTotal);
-			this.course.books = new ArrayList<Book>(this.books);
-			this.course.classes = new ArrayList<Disciplina>(this.classes);		
-			
-			
+		//recursividade nos componentes;
+		for(componentCursavelIF item : componentes) {
+			precoComponents += item.getPreco();
 		}
 		
-		
-		
-		public Course getCourse() {
-			return course;
-		}
-
-		
-		public String getName() {
-			return name;
-		}
-
-		public String getCode() {
-			return code;
-		}
-
-		public Double getPrice() {
-			return price;
-		}
-
-		public int getCHTotal() {
-			return CHTotal;
-		}
-
-		public Double getPctCumprido() {
-			return pctCumprido;
-		}
-
-		public List<Book> getBooks() {
-			return books;
-		}
-
-		public List<Disciplina> getClasses() {
-			return classes;
+		for(Book item : this.books) {
+			precoLivros += item.getPrice();
 		}
 		
+		// descontos
+		precoComponents -= precoComponents * 0.2;
+		precoLivros -= precoLivros * 0.1;
+		total = precoComponents + precoLivros;
 		
+		return total;
 	}
-	
-	
-	//q2
-	
-	public void attachStateChangedObserver(ObserverIF observer) {
-		this.observers.add(observer); 
-	}
-	
-	public void detachStateChangedObserver(ObserverIF observer) {
-		this.observers.remove(observer); 
-	}
-	
-	public void notifyObserver(String msm) {
-		for(ObserverIF observer : this.observers)
-			observer.update(msm);//nao passa parametro
-	}
-	
-	//q3
-	
 
-	public void continuar() {
-		this.state = this.state.continuar();
-		//System.out.println("continua");
-	}
-	
-
-	public void suspender() {
-		this.state = this.state.suspender();
-		//System.out.println("suspenso");
-	}
-	
-
-	public void concluir() {
-		this.state = this.state.concluir();
-		//System.out.println("concluido");
-	}
-	
-
-	public void cancelar() {
-		this.state = this.state.cancelar();
-		//System.out.println("cancelado");
-	}
-	
-
-	public String getRelatorio() {
-		String relatorio = "RELATÓRIO\n";
-		relatorio += "Nome Curso: " + this.getName() + "\n";
-		relatorio += "Code: " + this.getCode() + "\n";
-		relatorio += "Price: " + this.getPrice() + "\n";
-		relatorio += "CHTotal : " + this.getCHTotal() + "\n";
-		relatorio += "PctCumprido : " + this.getPctCumprido() + "\n";
-		return relatorio;
-	}
-	
-	/*public void verificaState() {
+	@Override
+	public double getChTotal() {
+		double cargaHoraria = 0.0;
 		
-		 System.out.println(this.state);
-	}*/
-
-
+		for(componentCursavelIF item : componentes) {
+			cargaHoraria += item.getChTotal();
+		}
+		return cargaHoraria;
+	}	
 }

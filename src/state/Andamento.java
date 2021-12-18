@@ -1,10 +1,10 @@
-package State;
+package state;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import State.Course;
-import State.Course.Snapshot;
+import state.Course;
+import state.Course.Snapshot;
 
 public class Andamento extends CursoAbstractState implements CursoStateIF{
 	

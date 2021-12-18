@@ -15,7 +15,7 @@ import model.Disciplina;
 
 public class Caretaker {
 	
-	
+	/*
 	
 	List<Course.Snapshot > snapshots = new ArrayList<Course.Snapshot>();
 	
@@ -35,7 +35,7 @@ public class Caretaker {
 	
 	
 
-
+	*/
 	
 	
 

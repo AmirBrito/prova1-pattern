@@ -66,7 +66,7 @@ public class CourseBuilder  {
 	}
 	
 	public Course thatsAll() {
-		return new Course(name,code,price, CHTotal, PctCumprido, books,classes );
+		return new Course(name,code,price, CHTotal, PctCumprido, books,null );
 	}
 	
 	

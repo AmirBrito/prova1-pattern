@@ -1,6 +1,8 @@
 package model;
 
-public class Disciplina extends Product {
+import composite.componentCursavelIF;
+
+public class Disciplina extends Product implements componentCursavelIF{
 
 	private int chTotal = 0;
 	private Double pctCumprido = 0.00;
@@ -11,7 +13,7 @@ public class Disciplina extends Product {
 		this.pctCumprido = 0.00;
 	}
 
-	public Double getPctCumprido() {
+	public double getPctCumprido() {
 		return pctCumprido;
 	}
 
@@ -28,18 +30,16 @@ public class Disciplina extends Product {
 	}
 	
 	public Boolean getConcluida() {
-		return concluida;
+		return this.concluida;
 	}
 
-	public Integer getChTotal() {
-		return chTotal;
+	public double getChTotal() {
+		return this.chTotal;
 	}
 	
 	public void setChTotal(Integer chTotal) {
 		this.chTotal = chTotal;
 	}
-	
-	//*************************************
 	
 	public void addCHT(int cht) {
 		
@@ -51,12 +51,15 @@ public class Disciplina extends Product {
 		this.chTotal = this.chTotal - cht;
 
 	}
-	
-
 
 	@Override
 	public String toString() {
 		return "Disciplina [name=" + getName() + ", code=" + getCode() + ", price=" + getPrice() + ", chTotal=" + getChTotal() + " Pct Cumprido: " + getPctCumprido() + " Concluida: " + getConcluida() + "]\n";
+	}
+
+	@Override
+	public double getPreco() {
+		return this.price;
 	}	
 
 }

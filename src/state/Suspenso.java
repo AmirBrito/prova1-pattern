@@ -1,7 +1,7 @@
-package State;
+package state;
 
-import State.Course;
-import State.Course.Snapshot;
+import state.Course;
+import state.Course.Snapshot;
 
 public class Suspenso extends CursoAbstractState implements CursoStateIF{
 	

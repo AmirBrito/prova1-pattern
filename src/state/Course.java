@@ -1,16 +1,16 @@
-package State;
+package state;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import State.Andamento;
-import State.CursoStateIF;
 import interfaces.ObserverIF;
 import model.Book;
-import State.Course;
 import model.Disciplina;
 import model.Product;
+import state.Andamento;
+import state.Course;
+import state.CursoStateIF;
 
 
 
