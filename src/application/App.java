@@ -2,6 +2,10 @@ package application;
 
 import adapter.AdapterDeClasses;
 import adapter.WebinarIF;
+import decorator.BookDecoratorIF;
+import decorator.CapaDuraDecorator;
+import decorator.ColoridoDecorator;
+import decorator.DigitalDecorator;
 import enums.ProductTypes;
 import factories.BookFactory;
 import factories.DisciplinaFactory;
@@ -17,9 +21,9 @@ public class App {
 	public static void main(String[] args) throws CloneNotSupportedException  {
 		
 		App teste = new App();
-		teste.q1();
+		//teste.q1();
 		teste.q2();
-		teste.q3();		
+		//teste.q3();		
 	}
 	
 	public void q1() {
@@ -61,11 +65,18 @@ public class App {
 	}
 	
 	public void q2() {
-		System.out.println("q2 falta implementação");
+		
+		Book book = new Book("Livro teste", "0001", 100.0);
+		BookDecoratorIF decorator = new DigitalDecorator(new ColoridoDecorator(book));
+		System.out.println(decorator.getName());
+		System.out.println(decorator.getPrice());
+		
+		decorator = new CapaDuraDecorator(book);
+		System.out.println(decorator.getName());
+		System.out.println(decorator.getPrice());
 	}
 	
 	public void q3() {
-		System.out.println("teste");
 		WebinarIF adaptavel = new Webinar("045", "Palestra", 1000.0, "hoster", 120);
 		AdapterDeClasses adaptador = new AdapterDeClasses(adaptavel);
 		adaptador.avancar(90.0);

@@ -6,7 +6,7 @@ public abstract class Product implements ProductIF {
 
 	protected String name = "";
 	protected String code = "";
-	protected  Double price = 0.00;
+	protected double price = 0.00;
 	
 	public Product() {
 		
@@ -38,8 +38,8 @@ public abstract class Product implements ProductIF {
 		return code;
 	}
 
-	public Double getPrice() {
-		return price;
+	public double getPrice() {
+		return this.price;
 	}
 
 	@Override

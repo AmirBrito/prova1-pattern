@@ -1,6 +1,8 @@
 package model;
 
-public class Book extends Product {
+import decorator.BookDecoratorIF;
+
+public class Book extends Product implements BookDecoratorIF{
 
 	private static String isbn = "";
 
