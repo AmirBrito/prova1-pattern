@@ -7,7 +7,10 @@ public class Disciplina extends Product implements componentCursavelIF{
 	private int chTotal = 0;
 	private Double pctCumprido = 0.00;
 	protected Boolean concluida = false;
-
+	
+	public Disciplina() {
+		
+	}
 	public Disciplina(String name, String code, Double price) {
 		super(name, code, price);
 		this.pctCumprido = 0.00;
@@ -17,8 +20,8 @@ public class Disciplina extends Product implements componentCursavelIF{
 		return pctCumprido;
 	}
 
-	public void setPctCumprido(Double pctCumprido) {
-		this.pctCumprido = pctCumprido;
+	public void avancar(Double pctCumprido) {		
+		this.pctCumprido += pctCumprido;
 		setConcluida(pctCumprido);
 	}
 	

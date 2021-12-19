@@ -1,30 +1,22 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-import builder.CourseBuilder;
 import enums.ProductTypes;
 import factories.BookFactory;
 import factories.DisciplinaFactory;
-import interfaces.FactoryIF;
 import interfaces.ProductIF;
 import model.Book;
 import model.Course;
 import model.Disciplina;
-import model.Ementa;
-import singleton.CoursePool;
-
 
 public class App {
 
 
 	public static void main(String[] args) throws CloneNotSupportedException  {
 		
-
-		new App().q1();	
-		
+		App teste = new App();
+		teste.q1();
+		teste.q2();
+		teste.q3();		
 	}
 	
 	public void q1() {
@@ -40,7 +32,6 @@ public class App {
 		String nameClass = "Padroes de projeto";
 		String codeClass = "000144";
 		Double priceClass = 500.00;
-		int chTotalClass = 90;
 		DisciplinaFactory fabricaProduto = new DisciplinaFactory();
 		ProductIF produto2 = fabricaProduto.createProduct(type, nameClass, codeClass, priceClass);
 		Disciplina disciplina = (Disciplina) produto2;
@@ -51,20 +42,26 @@ public class App {
 		cursoCompose.setCode("002");
 		cursoCompose.setCHTotal(100);
 		cursoCompose.addComponent(disciplina);
+		cursoCompose.addBook(livro);
 		System.out.println(cursoCompose.getPreco());
 		
 		Course curso = new Course();
 		curso.setName("ADS");
 		curso.setCode("001");
 		curso.setCHTotal(300);
+		curso.addComponent(cursoCompose);
+		curso.addComponent(cursoCompose);
 		curso.addComponent(disciplina);
-		curso.addComponent(cursoCompose);
-		curso.addComponent(cursoCompose);
 		curso.addBook(livro);
-		curso.addBook(livro);
-		
+		curso.addBook(livro);		
 		System.out.println(curso.getPreco());
 	}
 	
+	public void q2() {
+		System.out.println("q2 falta implementação");
+	}
 	
+	public void q3() {
+		System.out.println("teste");
+	}	
 }
