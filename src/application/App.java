@@ -21,9 +21,9 @@ public class App {
 	public static void main(String[] args) throws CloneNotSupportedException  {
 		
 		App teste = new App();
-		//teste.q1();
+		teste.q1();
 		teste.q2();
-		//teste.q3();		
+		teste.q3();		
 	}
 	
 	public void q1() {
