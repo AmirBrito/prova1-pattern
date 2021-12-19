@@ -1,5 +1,7 @@
 package application;
 
+import adapter.AdapterDeClasses;
+import adapter.WebinarIF;
 import enums.ProductTypes;
 import factories.BookFactory;
 import factories.DisciplinaFactory;
@@ -7,6 +9,7 @@ import interfaces.ProductIF;
 import model.Book;
 import model.Course;
 import model.Disciplina;
+import model.Webinar;
 
 public class App {
 
@@ -63,5 +66,16 @@ public class App {
 	
 	public void q3() {
 		System.out.println("teste");
+		WebinarIF adaptavel = new Webinar("045", "Palestra", 1000.0, "hoster", 120);
+		AdapterDeClasses adaptador = new AdapterDeClasses(adaptavel);
+		adaptador.avancar(90.0);
+		System.out.println(adaptador.getName());
+		System.out.println(adaptador.getCode());
+		System.out.println(adaptador.getPreco());
+		System.out.println(adaptador.getChTotal());
+		System.out.println(adaptador.getPctCumprido());
+		
+		
+		
 	}	
 }
